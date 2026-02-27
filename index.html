@@ -810,12 +810,45 @@ body {
 
 <!-- 会员留言区 -->
 <section class="message-section">
+  <h2 class="message-title"><section class="message-section">
   <h2 class="message-title">会员留言区</h2>
-  <div class="message-form">
+  <!-- 新增的留言展示区 -->
+  <div class="message-display" id="messageDisplay" style="max-width:1440px;margin:0 auto 24px;padding:0 20px;display:flex;flex-direction:column;gap:12px;"></div>
+  
+  <!-- 加宽后的留言输入框 -->
+  <div class="message-form" style="max-width:1440px;margin:0 auto;background-color:var(--dark-3);padding:32px;border-radius:12px;border:1px solid var(--border);">
     <textarea class="message-textarea" placeholder="请输入您的留言（仅注册会员可提交）..."></textarea>
     <button class="submit-btn" id="message-submit">提交留言</button>
   </div>
 </section>
+
+<script>
+// 留言提交并展示的逻辑
+document.getElementById('message-submit').onclick = () => {
+  // 获取输入的留言内容
+  const msgContent = document.querySelector('.message-textarea').value.trim();
+  if (!msgContent) {
+    alert('请输入留言内容后再提交！');
+    return;
+  }
+  
+  // 创建新的留言项
+  const messageBox = document.getElementById('messageDisplay');
+  const newMessage = document.createElement('div');
+  newMessage.style = `background:var(--dark-3);padding:16px;border-radius:8px;border:1px solid var(--border);margin-bottom:8px;`;
+  newMessage.innerHTML = `
+    <p style="color:var(--text-primary);margin:0;">${msgContent}</p>
+    <p style="font-size:12px;color:var(--text-secondary);margin:8px 0 0 0;">提交时间：${new Date().toLocaleString()}</p>
+  `;
+  
+  // 把新留言加到展示区最上方
+  messageBox.prepend(newMessage);
+  
+  // 提示成功并清空输入框
+  alert('留言提交成功！');
+  document.querySelector('.message-textarea').value = '';
+};
+</script>
 
 <!-- 关于我们 -->
 <section class="about-section">
