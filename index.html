@@ -36,6 +36,40 @@ body {
   line-height: 1.5;
 }
 
+/* 页面加载动画 */
+.loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--dark-1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.5s ease;
+}
+
+.loading.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid var(--border);
+  border-top: 5px solid var(--primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 /* 顶部品牌栏 */
 .header {
   width: 100%;
@@ -105,6 +139,7 @@ body {
   display: flex;
   list-style: none;
   gap: 2px;
+  flex-wrap: wrap; /* 移动端导航换行 */
 }
 
 .nav-item {
@@ -223,6 +258,7 @@ body {
   position: relative;
   overflow: hidden;
   display: block;
+  text-decoration: none; /* 去除卡片链接下划线 */
 }
 
 .card:hover {
@@ -288,6 +324,7 @@ body {
   transition: all 0.2s ease;
   border: none;
   cursor: pointer;
+  text-align: center;
 }
 
 .card-btn:hover {
@@ -311,6 +348,7 @@ body {
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease;
+  padding: 20px; /* 移动端弹窗内边距 */
 }
 
 .modal.active {
@@ -328,6 +366,7 @@ body {
   box-shadow: var(--shadow-hover);
   transform: translateY(-20px);
   transition: transform 0.3s ease;
+  position: relative; /* 确保关闭按钮定位正确 */
 }
 
 .modal.active .modal-content {
@@ -342,6 +381,11 @@ body {
   color: var(--text-secondary);
   cursor: pointer;
   transition: color 0.2s ease;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .modal-close:hover {
@@ -402,6 +446,11 @@ body {
   font-size: 13px;
   cursor: pointer;
   white-space: nowrap;
+  transition: background 0.2s ease;
+}
+
+.code-btn:hover:not(:disabled) {
+  background: var(--primary-light);
 }
 
 .code-btn:disabled {
@@ -466,6 +515,7 @@ body {
   resize: vertical;
   outline: none;
   margin-bottom: 16px;
+  transition: border-color 0.2s ease;
 }
 
 .message-textarea:focus {
@@ -538,11 +588,46 @@ body {
   .message-section, .about-section {
     padding: 20px 20px 40px;
   }
+  
+  .modal-content {
+    padding: 24px;
+  }
+  
+  .code-row {
+    flex-direction: column;
+  }
+  
+  .code-btn {
+    width: 100%;
+  }
+}
+
+/* 移动端导航优化 */
+@media (max-width: 480px) {
+  .nav-link {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+  
+  .logo-text {
+    font-size: 18px;
+  }
+  
+  .logo-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+  }
 }
 </style>
 </head>
 
 <body>
+<!-- 加载动画 -->
+<div class="loading" id="loading">
+  <div class="loading-spinner"></div>
+</div>
+
 <!-- 顶部品牌栏 -->
 <header class="header">
   <div class="header-container">
@@ -594,7 +679,7 @@ body {
     <div class="card" data-category="shortvideo live local">
       <h3 class="card-title">抖音精选联盟</h3>
       <p class="card-desc">抖音电商核心推广平台，支持达人带货、智能选品、实时高佣结算，覆盖全品类商品，官方直连保障收益安全。</p>
-      <a href="https://buyin.jinritemai.com/"target="_blank"class="card-btn">进入官方平台</a>
+      <a href="https://buyin.jinritemai.com/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
     <div class="card" data-category="shortvideo live">
       <h3 class="card-title">抖音星图商单</h3>
@@ -779,6 +864,13 @@ body {
 </div>
 
 <script>
+// 页面加载完成后隐藏加载动画
+window.addEventListener('load', function() {
+  setTimeout(() => {
+    document.getElementById('loading').classList.add('hidden');
+  }, 500);
+});
+
 // 导航筛选
 const navLinks = document.querySelectorAll('.nav-link');
 const cards = document.querySelectorAll('.card');
@@ -799,26 +891,70 @@ navLinks.forEach(link => {
 const registerBtn = document.getElementById('register-btn');
 const modal = document.getElementById('register-modal');
 const closeBtn = document.getElementById('modal-close');
-registerBtn.onclick = () => modal.classList.add('active');
-closeBtn.onclick = () => modal.classList.remove('active');
-window.onclick = e => e.target === modal && modal.classList.remove('active');
 
-// 验证码工具
+registerBtn.onclick = () => {
+  modal.classList.add('active');
+  // 弹窗打开时自动聚焦第一个输入框
+  document.querySelector('#register-form input').focus();
+};
+
+closeBtn.onclick = () => modal.classList.remove('active');
+
+// 点击弹窗外层关闭弹窗（优化版）
+window.onclick = e => {
+  if (e.target === modal) {
+    modal.classList.remove('active');
+  }
+};
+
+// 按ESC键关闭弹窗
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && modal.classList.contains('active')) {
+    modal.classList.remove('active');
+  }
+});
+
+// 验证码工具 - 增加防抖
+let phoneCodeTimer = null;
+let emailCodeTimer = null;
+
 function startCodeTimer(btnId, second = 60) {
   const btn = document.getElementById(btnId);
+  if (btn.disabled) return; // 防止重复点击
+  
   btn.disabled = true;
   let t = second;
   btn.innerText = t + '秒后重发';
+  
+  // 清除之前的定时器
+  if (btnId === 'getPhoneCode' && phoneCodeTimer) {
+    clearInterval(phoneCodeTimer);
+  }
+  if (btnId === 'getEmailCode' && emailCodeTimer) {
+    clearInterval(emailCodeTimer);
+  }
+  
   const timer = setInterval(() => {
     t--;
     if (t <= 0) {
       clearInterval(timer);
       btn.disabled = false;
       btn.innerText = '获取验证码';
+      if (btnId === 'getPhoneCode') {
+        phoneCodeTimer = null;
+      } else {
+        emailCodeTimer = null;
+      }
     } else {
       btn.innerText = t + '秒后重发';
     }
   }, 1000);
+  
+  if (btnId === 'getPhoneCode') {
+    phoneCodeTimer = timer;
+  } else {
+    emailCodeTimer = timer;
+  }
 }
 
 // 模拟验证码（演示用）
@@ -827,64 +963,157 @@ let emailCodeVal = '';
 
 // 获取手机验证码
 document.getElementById('getPhoneCode').onclick = function () {
-  const phone = document.getElementById('phone').value;
+  const phone = document.getElementById('phone').value.trim();
   if (!/^1[3-9]\d{9}$/.test(phone)) {
-    alert('请输入正确手机号');
+    alert('请输入正确的11位手机号');
     return;
   }
-  phoneCodeVal = '123456'; // 演示固定验证码
-  alert('已发送短信验证码：123456');
+  
+  // 生成随机验证码（更真实的模拟）
+  phoneCodeVal = Math.floor(100000 + Math.random() * 900000).toString();
+  alert(`已发送短信验证码至${phone}：${phoneCodeVal}`);
   startCodeTimer('getPhoneCode');
 };
 
 // 获取邮箱验证码
 document.getElementById('getEmailCode').onclick = function () {
-  const email = document.getElementById('email').value;
+  const email = document.getElementById('email').value.trim();
   if (!/^\S+@\S+\.\S+$/.test(email)) {
-    alert('请输入正确邮箱');
+    alert('请输入正确的邮箱格式');
     return;
   }
-  emailCodeVal = '654321'; // 演示固定验证码
-  alert('已发送邮箱验证码：654321');
+  
+  // 生成随机验证码
+  emailCodeVal = Math.floor(100000 + Math.random() * 900000).toString();
+  alert(`已发送邮箱验证码至${email}：${emailCodeVal}`);
   startCodeTimer('getEmailCode');
 };
 
 // 注册提交（必须双验证码正确）
 document.getElementById('register-form').addEventListener('submit', function (e) {
   e.preventDefault();
-  const form = new FormData(this);
-  const nickname = form.get('nickname');
-  const phone = form.get('phone');
-  const email = form.get('email');
-  const phoneCode = form.get('phoneCode');
-  const emailCode = form.get('emailCode');
-
+  
+  const formData = new FormData(this);
+  const nickname = formData.get('nickname').trim();
+  const phone = formData.get('phone').trim();
+  const email = formData.get('email').trim();
+  const phoneCode = formData.get('phoneCode').trim();
+  const emailCode = formData.get('emailCode').trim();
+  
+  // 基础验证
+  if (!nickname) {
+    alert('请输入昵称');
+    return;
+  }
+  
+  if (!/^1[3-9]\d{9}$/.test(phone)) {
+    alert('请输入正确的手机号');
+    return;
+  }
+  
+  if (!/^\S+@\S+\.\S+$/.test(email)) {
+    alert('请输入正确的邮箱格式');
+    return;
+  }
+  
+  if (!phoneCode) {
+    alert('请输入手机验证码');
+    return;
+  }
+  
+  if (!emailCode) {
+    alert('请输入邮箱验证码');
+    return;
+  }
+  
+  // 验证码验证
   if (phoneCode !== phoneCodeVal) {
-    alert('手机验证码不正确');
+    alert('手机验证码不正确，请重新输入');
+    document.getElementById('phoneCode').focus();
     return;
   }
+  
   if (emailCode !== emailCodeVal) {
-    alert('邮箱验证码不正确');
+    alert('邮箱验证码不正确，请重新输入');
+    document.getElementById('emailCode').focus();
     return;
   }
 
-  alert(`注册成功！
+  // 注册成功提示
+  alert(`🎉 注册成功！
 昵称：${nickname}
 手机：${phone}
-邮箱：${email}`);
+邮箱：${email}
+
+您已成为全网高佣推广联盟会员，可享受专属高佣加成权益！`);
+  
+  // 重置表单和状态
   modal.classList.remove('active');
   this.reset();
   phoneCodeVal = '';
   emailCodeVal = '';
+  
+  // 清除定时器
+  if (phoneCodeTimer) {
+    clearInterval(phoneCodeTimer);
+    phoneCodeTimer = null;
+    document.getElementById('getPhoneCode').disabled = false;
+    document.getElementById('getPhoneCode').innerText = '获取验证码';
+  }
+  
+  if (emailCodeTimer) {
+    clearInterval(emailCodeTimer);
+    emailCodeTimer = null;
+    document.getElementById('getEmailCode').disabled = false;
+    document.getElementById('getEmailCode').innerText = '获取验证码';
+  }
 });
 
-// 留言
+// 留言功能优化
 document.getElementById('message-submit').onclick = () => {
-  const v = document.querySelector('.message-textarea').value.trim();
-  if (!v) return alert('请输入留言');
-  alert('留言提交成功');
-  document.querySelector('.message-textarea').value = '';
+  const textarea = document.querySelector('.message-textarea');
+  const content = textarea.value.trim();
+  
+  if (!content) {
+    alert('请输入留言内容');
+    textarea.focus();
+    return;
+  }
+  
+  if (content.length > 500) {
+    alert('留言内容不能超过500个字');
+    return;
+  }
+  
+  alert('✅ 留言提交成功！我们会尽快回复您的问题。');
+  textarea.value = '';
 };
+
+// 卡片点击反馈
+document.querySelectorAll('.card').forEach(card => {
+  card.addEventListener('click', function(e) {
+    // 只有点击卡片非按钮区域时才添加反馈
+    if (!e.target.closest('.card-btn')) {
+      this.style.transform = 'translateY(-3px)';
+      setTimeout(() => {
+        this.style.transform = '';
+      }, 100);
+    }
+  });
+});
+
+// 平滑滚动
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const targetId = this.getAttribute('href');
+    if (targetId !== '#') {
+      document.querySelector(targetId).scrollIntoView({
+        behavior: 'smooth'
+      });
+    }
+  });
+});
 </script>
 </body>
 </html>
