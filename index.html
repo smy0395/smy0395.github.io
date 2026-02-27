@@ -3,44 +3,237 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>全网联盟平台链接汇总</title>
+    <title>全网佣金联盟平台官网合集</title>
     <style>
-        /* 以下是样式代码，不用修改 */
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: "微软雅黑", Arial, sans-serif; }
-        body { background: #f5f7fa; padding: 20px; }
-        .container { max-width: 1200px; margin: 0 auto; background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        h1 { text-align: center; color: #2c3e50; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid #eee; }
-        /* 文字模块样式 */
-        .link-box { margin: 15px 0; padding: 15px; background: #f8f9fa; border-left: 4px solid #3498db; border-radius: 5px; }
-        .link-name { font-size: 18px; color: #3498db; text-decoration: none; }
-        .link-name:hover { text-decoration: underline; }
-        .link-desc { margin-top: 8px; font-size: 14px; color: #666; line-height: 1.5; }
+        /* 全局样式重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        /* 页面容器 */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        /* 标题样式 */
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 24px;
+            border-bottom: 2px solid #0088ff;
+            padding-bottom: 10px;
+        }
+
+        /* 平台列表样式 */
+        .platform-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        /* 单个平台卡片 */
+        .platform-card {
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .platform-card:hover {
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        /* 平台名称 */
+        .platform-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #0088ff;
+            margin-bottom: 10px;
+        }
+
+        /* 平台描述 */
+        .platform-desc {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        /* 网址样式 */
+        .platform-url {
+            position: relative;
+        }
+
+        .url-text {
+            display: block;
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            color: #333;
+            font-size: 14px;
+            word-break: break-all;
+            margin-bottom: 8px;
+        }
+
+        /* 复制按钮 */
+        .copy-btn {
+            padding: 6px 12px;
+            background-color: #0088ff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: background-color 0.2s;
+        }
+
+        .copy-btn:hover {
+            background-color: #0066cc;
+        }
+
+        .copy-btn.copied {
+            background-color: #28a745;
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            .platform-list {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>全网联盟平台链接汇总</h1>
+        <h1>全网佣金联盟平台官网合集</h1>
+        <div class="platform-list">
+            <!-- 淘宝联盟 -->
+            <div class="platform-card">
+                <div class="platform-name">淘宝联盟（阿里妈妈）</div>
+                <div class="platform-desc">阿里旗下核心电商佣金联盟，覆盖淘宝、天猫等平台，主流电商佣金渠道。</div>
+                <div class="platform-url">
+                    <span class="url-text" id="url1">https://pub.alimama.com/</span>
+                    <button class="copy-btn" onclick="copyUrl('url1', this)">点击复制网址</button>
+                </div>
+            </div>
 
-        <!-- ========== 以下是你需要修改的内容 ========== -->
-        <!-- 平台1 -->
-        <div class="link-box">
-            <a class="link-name" href="https://替换成真实链接1.com" target="_blank">替换成平台名称1</a>
-            <div class="link-desc">替换成平台简介1：比如“这是XX联盟，专注XX领域”</div>
+            <!-- 京东联盟 -->
+            <div class="platform-card">
+                <div class="platform-name">京东联盟</div>
+                <div class="platform-desc">京东官方佣金推广平台，覆盖京东全品类商品，佣金结算稳定。</div>
+                <div class="platform-url">
+                    <span class="url-text" id="url2">https://union.jd.com/</span>
+                    <button class="copy-btn" onclick="copyUrl('url2', this)">点击复制网址</button>
+                </div>
+            </div>
+
+            <!-- 多多进宝 -->
+            <div class="platform-card">
+                <div class="platform-name">多多进宝</div>
+                <div class="platform-desc">拼多多官方佣金推广平台，低客单价高佣金，适合下沉市场推广。</div>
+                <div class="platform-url">
+                    <span class="url-text" id="url3">https://jinbao.pinduoduo.com/</span>
+                    <button class="copy-btn" onclick="copyUrl('url3', this)">点击复制网址</button>
+                </div>
+            </div>
+
+            <!-- 唯品会联盟 -->
+            <div class="platform-card">
+                <div class="platform-name">唯品会联盟</div>
+                <div class="platform-desc">唯品会官方推广平台，主打品牌特卖商品佣金推广。</div>
+                <div class="platform-url">
+                    <span class="url-text" id="url4">https://union.vip.com/</span>
+                    <button class="copy-btn" onclick="copyUrl('url4', this)">点击复制网址</button>
+                </div>
+            </div>
+
+            <!-- 抖音精选联盟 -->
+            <div class="platform-card">
+                <div class="platform-name">抖音精选联盟</div>
+                <div class="platform-desc">抖音电商官方佣金联盟，覆盖短视频/直播带货佣金推广。</div>
+                <div class="platform-url">
+                    <span class="url-text" id="url5">https://www.jinritemai.com/union/</span>
+                    <button class="copy-btn" onclick="copyUrl('url5', this)">点击复制网址</button>
+                </div>
+            </div>
+
+            <!-- 快手联盟 -->
+            <div class="platform-card">
+                <div class="platform-name">快手联盟</div>
+                <div class="platform-desc">快手官方电商佣金平台，适配快手直播/短视频带货场景。</div>
+                <div class="platform-url">
+                    <span class="url-text" id="url6">https://union.kuaishou.com/</span>
+                    <button class="copy-btn" onclick="copyUrl('url6', this)">点击复制网址</button>
+                </div>
+            </div>
+
+            <!-- 苏宁联盟 -->
+            <div class="platform-card">
+                <div class="platform-name">苏宁联盟</div>
+                <div class="platform-desc">苏宁易购官方推广平台，3C家电类商品佣金优势明显。</div>
+                <div class="platform-url">
+                    <span class="url-text" id="url7">https://union.suning.com/</span>
+                    <button class="copy-btn" onclick="copyUrl('url7', this)">点击复制网址</button>
+                </div>
+            </div>
+
+            <!-- 小红书品牌合作平台 -->
+            <div class="platform-card">
+                <div class="platform-name">小红书品牌合作平台</div>
+                <div class="platform-desc">小红书官方商单佣金平台，适合内容创作者对接品牌推广。</div>
+                <div class="platform-url">
+                    <span class="url-text" id="url8">https://brand.xiaohongshu.com/</span>
+                    <button class="copy-btn" onclick="copyUrl('url8', this)">点击复制网址</button>
+                </div>
+            </div>
         </div>
-
-        <!-- 平台2 -->
-        <div class="link-box">
-            <a class="link-name" href="https://替换成真实链接2.com" target="_blank">替换成平台名称2</a>
-            <div class="link-desc">替换成平台简介2：比如“这是XX联盟，提供XX服务”</div>
-        </div>
-
-        <!-- 平台3（不需要可以删除这段） -->
-        <div class="link-box">
-            <a class="link-name" href="https://替换成真实链接3.com" target="_blank">替换成平台名称3</a>
-            <div class="link-desc">替换成平台简介3：比如“这是XX联盟，适合XX人群”</div>
-        </div>
-        <!-- ========== 以上是你需要修改的内容 ========== -->
-
     </div>
+
+    <script>
+        // 复制网址功能
+        function copyUrl(urlId, btn) {
+            // 获取网址文本
+            const urlText = document.getElementById(urlId).textContent;
+            // 创建临时输入框
+            const tempInput = document.createElement('input');
+            tempInput.value = urlText;
+            document.body.appendChild(tempInput);
+            // 选中并复制
+            tempInput.select();
+            document.execCommand('copy');
+            // 移除临时输入框
+            document.body.removeChild(tempInput);
+            
+            // 按钮状态反馈
+            btn.textContent = '已复制 ✓';
+            btn.classList.add('copied');
+            // 3秒后恢复按钮状态
+            setTimeout(() => {
+                btn.textContent = '点击复制网址';
+                btn.classList.remove('copied');
+            }, 3000);
+            
+            // 可选：提示弹窗
+            alert('网址已复制成功：' + urlText);
+        }
+    </script>
 </body>
 </html>
