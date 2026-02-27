@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>全网高佣推广联盟导航 | 官方旗舰版</title>
 <style>
-/* 全局重置与基础样式 - 大厂级规范 */
+/* 全局重置与基础样式 */
 * {
   margin: 0;
   padding: 0;
@@ -15,7 +15,6 @@
 }
 
 :root {
-  /* 高端配色体系 */
   --primary: #165DFF;
   --primary-light: #4080FF;
   --dark-1: #0A0E17;
@@ -37,7 +36,7 @@ body {
   line-height: 1.5;
 }
 
-/* 顶部品牌栏 - 官方感核心区域 */
+/* 顶部品牌栏 */
 .header {
   width: 100%;
   background-color: var(--dark-2);
@@ -89,7 +88,7 @@ body {
   margin-top: 2px;
 }
 
-/* 核心导航栏 - 大厂级交互 */
+/* 核心导航栏 */
 .nav-main {
   background-color: var(--dark-3);
   padding: 0;
@@ -120,6 +119,7 @@ body {
   font-size: 15px;
   font-weight: 500;
   transition: all 0.2s ease;
+  cursor: pointer;
 }
 
 .nav-link:hover {
@@ -132,7 +132,6 @@ body {
   background-color: rgba(22, 93, 255, 0.1);
 }
 
-/* 激活态下划线 */
 .nav-link.active::after {
   content: "";
   position: absolute;
@@ -144,7 +143,45 @@ body {
   border-radius: 3px 3px 0 0;
 }
 
-/* 主内容区 - 大厂级留白与排版 */
+/* 新闻滚动条样式 */
+.news-scroll {
+  width: 100%;
+  background-color: var(--dark-2);
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 8px 0;
+}
+
+.news-scroll-content {
+  display: inline-block;
+  animation: scroll 30s linear infinite;
+  padding-left: 100%;
+}
+
+.news-scroll-item {
+  display: inline-block;
+  padding: 0 20px;
+  color: var(--text-primary);
+  font-size: 14px;
+}
+
+.news-scroll-label {
+  color: var(--primary);
+  font-weight: 600;
+  margin-right: 10px;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* 主内容区 */
 .main {
   max-width: 1440px;
   margin: 0 auto;
@@ -169,14 +206,14 @@ body {
   margin-right: auto;
 }
 
-/* 平台卡片容器 - 高端网格布局 */
+/* 平台卡片容器 */
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
   gap: 24px;
 }
 
-/* 平台卡片 - 分层设计+微交互 */
+/* 平台卡片 */
 .card {
   background-color: var(--dark-3);
   border: 1px solid var(--border);
@@ -188,7 +225,6 @@ body {
   display: block;
 }
 
-/* 卡片悬浮态 - 大厂级动效 */
 .card:hover {
   transform: translateY(-6px);
   box-shadow: var(--shadow-hover);
@@ -196,7 +232,6 @@ body {
   background-color: var(--dark-2);
 }
 
-/* 卡片装饰角标 */
 .card::before {
   content: "";
   position: absolute;
@@ -227,7 +262,6 @@ body {
   gap: 12px;
 }
 
-/* 标题前的小图标 */
 .card-title::before {
   content: "●";
   color: var(--primary);
@@ -241,7 +275,7 @@ body {
   margin-bottom: 24px;
 }
 
-/* 按钮 - 大厂级渐变+交互 */
+/* 按钮样式 */
 .card-btn {
   display: inline-block;
   padding: 12px 24px;
@@ -262,7 +296,213 @@ body {
   box-shadow: 0 4px 12px rgba(22, 93, 255, 0.3);
 }
 
-/* 响应式适配 - 移动端也保持高端感 */
+/* 注册弹窗样式 */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  background-color: var(--dark-3);
+  border-radius: 12px;
+  padding: 32px;
+  width: 100%;
+  max-width: 480px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-20px);
+  transition: transform 0.3s ease;
+}
+
+.modal.active .modal-content {
+  transform: translateY(0);
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 24px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.modal-close:hover {
+  color: white;
+}
+
+.modal-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 16px;
+  background-color: var(--dark-4);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.form-input:focus {
+  border-color: var(--primary);
+}
+
+.code-row {
+  display: flex;
+  gap: 10px;
+}
+
+.code-row input {
+  flex: 1;
+}
+
+.code-btn {
+  width: 120px;
+  padding: 12px 10px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.code-btn:disabled {
+  background: #666;
+  cursor: not-allowed;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 10px;
+}
+
+.submit-btn:hover {
+  background: linear-gradient(135deg, #0E4BDB, var(--primary));
+}
+
+/* 留言区样式 */
+.message-section {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 40px 40px 80px;
+  border-top: 1px solid var(--border);
+  margin-top: 40px;
+}
+
+.message-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.message-form {
+  max-width: 800px;
+  margin: 0 auto 40px;
+  background-color: var(--dark-3);
+  padding: 32px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.message-textarea {
+  width: 100%;
+  min-height: 150px;
+  padding: 16px;
+  background-color: var(--dark-4);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 14px;
+  resize: vertical;
+  outline: none;
+  margin-bottom: 16px;
+}
+
+.message-textarea:focus {
+  border-color: var(--primary);
+}
+
+/* 关于我们样式 */
+.about-section {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 40px 40px 60px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.about-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.about-content {
+  font-size: 16px;
+  color: var(--text-secondary);
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+.contact-info {
+  margin-top: 20px;
+  font-size: 16px;
+  color: var(--text-primary);
+}
+
+/* 响应式适配 */
 @media (max-width: 768px) {
   .header-container, .nav-container, .main {
     padding: 0 20px;
@@ -289,12 +529,21 @@ body {
     padding: 12px 16px;
     font-size: 14px;
   }
+  
+  .news-scroll-item {
+    font-size: 12px;
+    padding: 0 10px;
+  }
+  
+  .message-section, .about-section {
+    padding: 20px 20px 40px;
+  }
 }
 </style>
 </head>
 
 <body>
-<!-- 顶部品牌栏 - 官方感核心 -->
+<!-- 顶部品牌栏 -->
 <header class="header">
   <div class="header-container">
     <div class="logo">
@@ -307,7 +556,7 @@ body {
   </div>
 </header>
 
-<!-- 核心导航栏 - 大厂级交互 -->
+<!-- 核心导航栏 -->
 <nav class="nav-main">
   <div class="nav-container">
     <ul class="nav-list">
@@ -320,18 +569,28 @@ body {
       <li class="nav-item"><a class="nav-link" data-category="local">本地生活</a></li>
       <li class="nav-item"><a class="nav-link" data-category="game">游戏推广</a></li>
       <li class="nav-item"><a class="nav-link" data-category="finance">金融联盟</a></li>
+      <li class="nav-item"><a class="nav-link" id="register-btn">注册会员</a></li>
     </ul>
   </div>
 </nav>
+
+<!-- 新闻滚动条 -->
+<div class="news-scroll">
+  <div class="news-scroll-content">
+    <span class="news-scroll-item"><span class="news-scroll-label">联盟动态</span>：2025年最新高佣推广政策已更新，部分品类佣金比例提升至35%</span>
+    <span class="news-scroll-item"><span class="news-scroll-label">平台公告</span>：抖音精选联盟新增本地生活推广专区，佣金结算周期缩短至T+1</span>
+    <span class="news-scroll-item"><span class="news-scroll-label">行业资讯</span>：淘宝联盟2025年Q1推广数据发布，短视频带货占比突破68%</span>
+    <span class="news-scroll-item"><span class="news-scroll-label">重要通知</span>：注册会员可享专属高佣加成，最高额外提升5%佣金比例</span>
+    <span class="news-scroll-item"><span class="news-scroll-label">活动提醒</span>：京东联盟618推广预热活动已开启，参与即享流量扶持</span>
+  </div>
+</div>
 
 <!-- 主内容区 -->
 <main class="main">
   <h1 class="page-title">官方认证推广平台入口</h1>
   <p class="page-desc">汇聚25家主流高佣推广联盟，覆盖电商、短视频、本地生活等全品类，所有平台均为官方授权，保障推广收益安全合规</p>
 
-  <!-- 平台卡片网格 -->
   <div class="card-grid">
-    <!-- 1. 抖音系 -->
     <div class="card" data-category="shortvideo live local">
       <h3 class="card-title">抖音精选联盟</h3>
       <p class="card-desc">抖音电商核心推广平台，支持达人带货、智能选品、实时高佣结算，覆盖全品类商品，官方直连保障收益安全。</p>
@@ -348,7 +607,6 @@ body {
       <a href="https://business.douyin.com/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
 
-    <!-- 2. 快手系 -->
     <div class="card" data-category="shortvideo live">
       <h3 class="card-title">快手好物联盟</h3>
       <p class="card-desc">快手官方带货核心平台，达人选品库丰富、佣金实时结算、流量倾斜政策多，下沉市场推广优势显著。</p>
@@ -360,7 +618,6 @@ body {
       <a href="https://jx.kuaishou.com/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
 
-    <!-- 3. 小红书系 -->
     <div class="card" data-category="article shortvideo">
       <h3 class="card-title">小红书品牌合作</h3>
       <p class="card-desc">小红书官方博主商单平台，图文/视频内容推广、佣金透明结算，适合美妆、家居、时尚类推广。</p>
@@ -372,7 +629,6 @@ body {
       <a href="https://pgy.xiaohongshu.com/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
 
-    <!-- 4. 阿里系 -->
     <div class="card" data-category="ecommerce">
       <h3 class="card-title">淘宝联盟</h3>
       <p class="card-desc">阿里妈妈核心推广平台，淘宝/天猫全品类商品高佣推广，数据追踪精准、结算周期稳定。</p>
@@ -389,7 +645,6 @@ body {
       <a href="https://open.alipay.com/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
 
-    <!-- 5. 京东系 -->
     <div class="card" data-category="ecommerce">
       <h3 class="card-title">京东联盟</h3>
       <p class="card-desc">京东官方推广核心平台，全品类商品高佣分成、月结结算稳定，3C数码类推广优势显著。</p>
@@ -401,7 +656,6 @@ body {
       <a href="https://www.finxiang.com/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
 
-    <!-- 6. 腾讯系 -->
     <div class="card" data-category="shortvideo live ecommerce">
       <h3 class="card-title">微信视频号联盟</h3>
       <p class="card-desc">微信视频号官方带货平台，私域流量转化、高佣结算、合规性强，适合公众号/社群联动推广。</p>
@@ -418,7 +672,6 @@ body {
       <a href="https://union.qq.com/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
 
-    <!-- 7. 百度系 -->
     <div class="card" data-category="search">
       <h3 class="card-title">百度联盟</h3>
       <p class="card-desc">百度搜索广告核心推广平台，网站/APP流量分成、高佣结算，搜索精准营销首选。</p>
@@ -430,14 +683,12 @@ body {
       <a href="https://baijiahao.baidu.com/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
 
-    <!-- 8. 360系 -->
     <div class="card" data-category="search">
       <h3 class="card-title">360推广联盟</h3>
       <p class="card-desc">360全域流量生态平台，浏览器、搜索广告分成，下沉市场流量覆盖广。</p>
       <a href="https://union.360.cn/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
 
-    <!-- 9. 知乎系 -->
     <div class="card" data-category="article">
       <h3 class="card-title">知乎商业推广</h3>
       <p class="card-desc">知乎内容合作官方平台，品牌精准投放、商单推广、佣金透明，高知用户群体首选。</p>
@@ -449,7 +700,6 @@ body {
       <a href="https://zhuanlan.zhihu.com/zhiplus" target="_blank" class="card-btn">进入官方平台</a>
     </div>
 
-    <!-- 10. 其他主流 -->
     <div class="card" data-category="shortvideo live">
       <h3 class="card-title">B站花火平台</h3>
       <p class="card-desc">B站官方商单核心平台，UP主推广、品牌合作、佣金保障，二次元/知识类内容优势显著。</p>
@@ -473,35 +723,168 @@ body {
   </div>
 </main>
 
-<!-- 分类筛选核心JS - 保留所有功能 -->
+<!-- 会员留言区 -->
+<section class="message-section">
+  <h2 class="message-title">会员留言区</h2>
+  <div class="message-form">
+    <textarea class="message-textarea" placeholder="请输入您的留言（仅注册会员可提交）..."></textarea>
+    <button class="submit-btn" id="message-submit">提交留言</button>
+  </div>
+</section>
+
+<!-- 关于我们 -->
+<section class="about-section">
+  <h2 class="about-title">关于我们</h2>
+  <div class="about-content">
+    全网高佣推广联盟是国内领先的推广资源整合平台，致力于为推广者提供官方、合规、高佣的推广渠道。我们与各大平台深度合作，保障推广者的收益安全与结算效率。
+    <div class="contact-info">
+      <p>联系方式：15013787778（微信同号）</p>
+      <p>QQ：1258999951</p>
+    </div>
+  </div>
+</section>
+
+<!-- 注册会员弹窗 -->
+<div class="modal" id="register-modal">
+  <div class="modal-content">
+    <span class="modal-close" id="modal-close">&times;</span>
+    <h3 class="modal-title">会员注册</h3>
+    <form id="register-form">
+      <div class="form-group">
+        <label class="form-label">昵称</label>
+        <input type="text" class="form-input" name="nickname" placeholder="请输入您的昵称" required>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">手机号</label>
+        <input type="tel" class="form-input" name="phone" id="phone" placeholder="请输入手机号" required>
+      </div>
+      <div class="form-group code-row">
+        <input type="text" class="form-input" name="phoneCode" id="phoneCode" placeholder="请输入手机验证码" required>
+        <button type="button" class="code-btn" id="getPhoneCode">获取验证码</button>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">邮箱</label>
+        <input type="email" class="form-input" name="email" id="email" placeholder="请输入邮箱" required>
+      </div>
+      <div class="form-group code-row">
+        <input type="text" class="form-input" name="emailCode" id="emailCode" placeholder="请输入邮箱验证码" required>
+        <button type="button" class="code-btn" id="getEmailCode">获取验证码</button>
+      </div>
+
+      <button type="submit" class="submit-btn">提交注册</button>
+    </form>
+  </div>
+</div>
+
 <script>
-// 获取所有导航链接和卡片
+// 导航筛选
 const navLinks = document.querySelectorAll('.nav-link');
 const cards = document.querySelectorAll('.card');
-
-// 绑定点击事件
 navLinks.forEach(link => {
-  link.addEventListener('click', function() {
-    // 移除所有激活态
+  link.addEventListener('click', function () {
+    if (this.id === 'register-btn') return;
     navLinks.forEach(nav => nav.classList.remove('active'));
-    // 激活当前导航
     this.classList.add('active');
-    
-    // 获取目标分类
-    const targetCategory = this.getAttribute('data-category');
-    
-    // 筛选卡片
-    cards.forEach(card => {
-      const cardCategories = card.getAttribute('data-category').split(' ');
-      if (targetCategory === 'all' || cardCategories.includes(targetCategory)) {
-        card.classList.remove('hidden');
-      } else {
-        card.classList.add('hidden');
-      }
+    const cat = this.dataset.category;
+    cards.forEach(c => {
+      const cs = c.dataset.category.split(' ');
+      c.classList.toggle('hidden', !(cat === 'all' || cs.includes(cat)));
     });
   });
 });
-</script>
 
+// 弹窗
+const registerBtn = document.getElementById('register-btn');
+const modal = document.getElementById('register-modal');
+const closeBtn = document.getElementById('modal-close');
+registerBtn.onclick = () => modal.classList.add('active');
+closeBtn.onclick = () => modal.classList.remove('active');
+window.onclick = e => e.target === modal && modal.classList.remove('active');
+
+// 验证码工具
+function startCodeTimer(btnId, second = 60) {
+  const btn = document.getElementById(btnId);
+  btn.disabled = true;
+  let t = second;
+  btn.innerText = t + '秒后重发';
+  const timer = setInterval(() => {
+    t--;
+    if (t <= 0) {
+      clearInterval(timer);
+      btn.disabled = false;
+      btn.innerText = '获取验证码';
+    } else {
+      btn.innerText = t + '秒后重发';
+    }
+  }, 1000);
+}
+
+// 模拟验证码（演示用）
+let phoneCodeVal = '';
+let emailCodeVal = '';
+
+// 获取手机验证码
+document.getElementById('getPhoneCode').onclick = function () {
+  const phone = document.getElementById('phone').value;
+  if (!/^1[3-9]\d{9}$/.test(phone)) {
+    alert('请输入正确手机号');
+    return;
+  }
+  phoneCodeVal = '123456'; // 演示固定验证码
+  alert('已发送短信验证码：123456');
+  startCodeTimer('getPhoneCode');
+};
+
+// 获取邮箱验证码
+document.getElementById('getEmailCode').onclick = function () {
+  const email = document.getElementById('email').value;
+  if (!/^\S+@\S+\.\S+$/.test(email)) {
+    alert('请输入正确邮箱');
+    return;
+  }
+  emailCodeVal = '654321'; // 演示固定验证码
+  alert('已发送邮箱验证码：654321');
+  startCodeTimer('getEmailCode');
+};
+
+// 注册提交（必须双验证码正确）
+document.getElementById('register-form').addEventListener('submit', function (e) {
+  e.preventDefault();
+  const form = new FormData(this);
+  const nickname = form.get('nickname');
+  const phone = form.get('phone');
+  const email = form.get('email');
+  const phoneCode = form.get('phoneCode');
+  const emailCode = form.get('emailCode');
+
+  if (phoneCode !== phoneCodeVal) {
+    alert('手机验证码不正确');
+    return;
+  }
+  if (emailCode !== emailCodeVal) {
+    alert('邮箱验证码不正确');
+    return;
+  }
+
+  alert(`注册成功！
+昵称：${nickname}
+手机：${phone}
+邮箱：${email}`);
+  modal.classList.remove('active');
+  this.reset();
+  phoneCodeVal = '';
+  emailCodeVal = '';
+});
+
+// 留言
+document.getElementById('message-submit').onclick = () => {
+  const v = document.querySelector('.message-textarea').value.trim();
+  if (!v) return alert('请输入留言');
+  alert('留言提交成功');
+  document.querySelector('.message-textarea').value = '';
+};
+</script>
 </body>
 </html>
