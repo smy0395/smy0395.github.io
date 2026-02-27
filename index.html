@@ -1,344 +1,151 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>全网高佣推广联盟导航 | 高端IT办公版</title>
-<style>
-/* 全局重置与基础样式 */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: "Microsoft YaHei", Arial, sans-serif;
-  /* 纯深色科技渐变背景（无森林、无突兀图片） */
-  background: linear-gradient(135deg, #0a0a10 0%, #1a1a2e 50%, #16213e 100%);
-  color: #e2e8f0;
-  min-height: 100vh;
-  position: relative;
-}
-
-/* 高档办公场景底图（低透明度，不抢视觉焦点） */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('https://picsum.photos/id/180/1920/1080'); /* 高端办公场景图 */
-  background-size: cover;
-  background-position: center;
-  opacity: 0.12; /* 极低透明度，仅做氛围点缀 */
-  z-index: -1;
-}
-
-/* 顶部分类导航栏 */
-.navbar {
-  width: 100%;
-  background: rgba(15, 15, 30, 0.9);
-  padding: 18px 20px;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 25px;
-  border-bottom: 1px solid #3a435e;
-  position: sticky;
-  top: 0;
-  z-index: 99;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-}
-
-.navbar a {
-  color: #cbd5e1;
-  text-decoration: none;
-  font-size: 16px;
-  padding: 8px 15px;
-  border-radius: 8px;
-  transition: all 0.2s;
-  cursor: pointer;
-}
-
-/* 导航选中态样式 */
-.navbar a:hover, .navbar a.active {
-  background: rgba(74, 85, 104, 0.4);
-  color: #ffffff;
-  transform: translateY(-1px);
-}
-
-/* 内容容器 */
-.container {
-  max-width: 1400px;
-  margin: 50px auto;
-  padding: 0 20px;
-}
-
-.container h2 {
-  font-size: 28px;
-  margin-bottom: 40px;
-  text-align: center;
-  color: #ffffff;
-  text-shadow: 0 0 10px rgba(0,0,0,0.7);
-}
-
-/* 25个平台卡片布局 */
-.card-box {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 25px;
-}
-
-/* 平台卡片样式（高端磨砂感） */
-.card {
-  background: rgba(26, 32, 44, 0.75);
-  border: 1px solid #4a5568;
-  border-radius: 12px;
-  padding: 25px;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(8px);
-  display: block; /* 默认显示 */
-}
-
-/* 隐藏卡片的样式 */
-.card.hidden {
-  display: none;
-}
-
-.card:hover {
-  transform: translateY(-6px);
-  background: rgba(30, 41, 59, 0.85);
-  border-color: #64748b;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-}
-
-.card h3 {
-  font-size: 19px;
-  margin-bottom: 12px;
-  color: #ffffff;
-}
-
-.card p {
-  font-size: 14px;
-  color: #94a3b8;
-  margin-bottom: 20px;
-  line-height: 1.5;
-}
-
-/* 按钮样式（高端渐变） */
-.card a {
-  display: inline-block;
-  padding: 10px 20px;
-  background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
-  color: #ffffff;
-  border-radius: 8px;
-  text-decoration: none;
-  font-size: 14px;
-  transition: all 0.2s;
-  border: none;
-}
-
-.card a:hover {
-  background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
-  transform: scale(1.03);
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全网推广联盟导航</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            max-width: 1200px; 
+            margin: 3rem auto; 
+            padding: 0 1rem;
+            font-family: "Microsoft Yahei", sans-serif; 
+            background-color: #f8f9fa; 
+        }
+        h1 { 
+            color: #2d3748; 
+            text-align: center; 
+            padding-bottom: 12px;
+            border-bottom: 2px solid #3182ce; 
+            margin-bottom: 2.5rem; 
+        }
+        .grid-container { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.8rem; 
+        }
+        .card { 
+            background: #ffffff; 
+            padding: 1.6rem; 
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08); 
+            transition: all 0.3s ease; 
+            border-top: 3px solid #3182ce; 
+        }
+        .card:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.12); 
+        }
+        .card h3 { 
+            margin-top: 0; 
+            color: #2d3748; 
+            margin-bottom: 0.9rem; 
+            font-size: 1.15rem; 
+        }
+        .card p { 
+            color: #718096; 
+            font-size: 0.95rem; 
+            line-height: 1.6; 
+            margin-bottom: 1.3rem; 
+        }
+        .btn { 
+            display: inline-block; 
+            padding: 0.65rem 1.3rem; 
+            background-color: #3182ce;
+            color: #ffffff; 
+            text-decoration: none; 
+            border-radius: 4px;
+            transition: background-color 0.3s ease; 
+            font-size: 0.9rem; 
+            font-weight: 500; 
+        }
+        .btn:hover { 
+            background-color: #2b6cb0; 
+        }
+    </style>
 </head>
-
 <body>
-<!-- 完整分类导航栏 -->
-<div class="navbar">
-  <a class="active" data-category="all">首页</a>
-  <a data-category="ecommerce">电商联盟</a>
-  <a data-category="shortvideo">短视频推广</a>
-  <a data-category="article">图文内容</a>
-  <a data-category="search">搜索广告</a>
-  <a data-category="live">直播带货</a>
-  <a data-category="local">本地生活</a>
-  <a data-category="game">游戏推广</a>
-  <a data-category="finance">金融联盟</a>
-</div>
-
-<div class="container">
-  <h2>全网高佣推广联盟入口（25个完整平台）</h2>
-
-  <div class="card-box">
-    <!-- 1. 抖音系（短视频+直播+本地生活） -->
-    <div class="card" data-category="shortvideo live local">
-      <h3>抖音精选联盟</h3>
-      <p>抖音电商核心推广平台，达人带货、选品、高佣结算，官方可访问</p>
-      <a href="https://buyin.jinritemai.com/" target="_blank">进入平台</a>
+    <h1>全网推广联盟导航汇总</h1>
+    <div class="grid-container">
+        <!-- 1. 阿里妈妈·淘宝联盟 -->
+        <div class="card">
+            <h3>阿里妈妈·淘宝联盟</h3>
+            <p>淘宝、天猫商品推广联盟，适合电商带货，佣金体系完善</p>
+            <a href="https://pub.alimama.com/" target="_blank" class="btn">进入官网</a>
+        </div>
+        <!-- 2. 京东联盟 -->
+        <div class="card">
+            <h3>京东联盟</h3>
+            <p>京东全品类商品推广，物流优势明显，适合大件/快消品推广</p>
+            <a href="https://union.jd.com/" target="_blank" class="btn">进入官网</a>
+        </div>
+        <!-- 3. 拼多多多多进宝 -->
+        <div class="card">
+            <h3>拼多多多多进宝</h3>
+            <p>拼多多商品推广，低价商品居多，佣金结算快</p>
+            <a href="https://jinbao.pinduoduo.com/" target="_blank" class="btn">进入官网</a>
+        </div>
+        <!-- 4. 抖音精选联盟 -->
+        <div class="card">
+            <h3>抖音精选联盟</h3>
+            <p>抖音平台带货核心渠道，短视频/直播推广首选</p>
+            <a href="https://www.douyin.com/falcon/webcast/revenue/union" target="_blank" class="btn">进入官网</a>
+        </div>
+        <!-- 5. 快手好物联盟 -->
+        <div class="card">
+            <h3>快手好物联盟</h3>
+            <p>快手平台官方推广联盟，下沉市场覆盖广</p>
+            <a href="https://www.kuaishou.com/service/cms/union/overview" target="_blank" class="btn">进入官网</a>
+        </div>
+        <!-- 6. 小红书品牌合作平台 -->
+        <div class="card">
+            <h3>小红书品牌合作平台</h3>
+            <p>小红书创作者商业合作渠道，内容种草推广核心平台</p>
+            <a href="https://brand.xiaohongshu.com/" target="_blank" class="btn">进入官网</a>
+        </div>
+        <!-- 7. B站花火平台 -->
+        <div class="card">
+            <h3>B站花火平台</h3>
+            <p>B站官方商单撮合平台，适合年轻用户群体推广</p>
+            <a href="https://huahuo.bilibili.com/" target="_blank" class="btn">进入官网</a>
+        </div>
+        <!-- 8. 知乎知+推广 -->
+        <div class="card">
+            <h3>知乎知+推广</h3>
+            <p>知乎内容营销平台，适合高价值、知识型产品推广</p>
+            <a href="https://zhuanlan.zhihu.com/zvideo/zhihuplus" target="_blank" class="btn">进入官网</a>
+        </div>
+        <!-- 9. 微博商业推广 -->
+        <div class="card">
+            <h3>微博商业推广</h3>
+            <p>微博官方广告投放平台，社交裂变推广优势明显</p>
+            <a href="https://e.weibo.com/" target="_blank" class="btn">进入官网</a>
+        </div>
+        <!-- 10. 腾讯广告联盟 -->
+        <div class="card">
+            <h3>腾讯广告联盟</h3>
+            <p>覆盖微信、QQ等腾讯生态，流量规模大，精准投放能力强</p>
+            <a href="https://union.qq.com/" target="_blank" class="btn">进入官网</a>
+        </div>
+        <!-- 11. 百度联盟 -->
+        <div class="card">
+            <h3>百度联盟</h3>
+            <p>百度搜索引擎生态推广，适合搜索流量转化</p>
+            <a href="https://union.baidu.com/" target="_blank" class="btn">进入官网</a>
+        </div>
+        <!-- 12. 360联盟 -->
+        <div class="card">
+            <h3>360联盟</h3>
+            <p>360搜索、浏览器等生态推广，下沉市场覆盖广</p>
+            <a href="https://union.360.cn/" target="_blank" class="btn">进入官网</a>
+        </div>
+        <!-- 13. 苏宁联盟 -->
+        <div class="card">
+            <h3>苏宁联盟</h3>
+            <p>苏宁易购全品类推广，家电、3C产品优势突出</p>
+            <a href="https://union.suning.com/" target="_blank" class="btn">进入官网</a>
+        </div>
     </div>
-    <div class="card" data-category="shortvideo live">
-      <h3>抖音星图商单</h3>
-      <p>抖音官方达人广告合作平台，品牌商单、内容推广、佣金结算</p>
-      <a href="https://star.toutiao.com/" target="_blank">进入平台</a>
-    </div>
-    <div class="card" data-category="shortvideo local">
-      <h3>抖音本地推</h3>
-      <p>抖音本地生活推广联盟，餐饮、到店、服务类高佣推广</p>
-      <a href="https://business.douyin.com/" target="_blank">进入平台</a>
-    </div>
-
-    <!-- 2. 快手系（短视频+直播） -->
-    <div class="card" data-category="shortvideo live">
-      <h3>快手好物联盟</h3>
-      <p>快手官方带货联盟，达人选品、佣金推广、实时结算</p>
-      <a href="https://union.kuaishou.com/" target="_blank">进入平台</a>
-    </div>
-    <div class="card" data-category="shortvideo live">
-      <h3>快手磁力聚星</h3>
-      <p>快手达人商业合作平台，品牌推广、商单对接、佣金结算</p>
-      <a href="https://jx.kuaishou.com/" target="_blank">进入平台</a>
-    </div>
-
-    <!-- 3. 小红书系（图文+短视频） -->
-    <div class="card" data-category="article shortvideo">
-      <h3>小红书品牌合作</h3>
-      <p>小红书官方博主商单平台，图文/视频推广、佣金结算</p>
-      <a href="https://partner.xiaohongshu.com/" target="_blank">进入平台</a>
-    </div>
-    <div class="card" data-category="article shortvideo">
-      <h3>小红书蒲公英</h3>
-      <p>小红书达人接单平台，品牌投放、内容合作、高佣推广</p>
-      <a href="https://pgy.xiaohongshu.com/" target="_blank">进入平台</a>
-    </div>
-
-    <!-- 4. 阿里系（电商） -->
-    <div class="card" data-category="ecommerce">
-      <h3>淘宝联盟</h3>
-      <p>阿里妈妈核心推广平台，淘宝/天猫商品高佣推广</p>
-      <a href="https://pub.alimama.com/" target="_blank">进入平台</a>
-    </div>
-    <div class="card" data-category="ecommerce">
-      <h3>淘客推广联盟</h3>
-      <p>淘宝客专属推广平台，海量商品、高佣分成、实时结算</p>
-      <a href="https://taoke.alimama.com/" target="_blank">进入平台</a>
-    </div>
-    <div class="card" data-category="ecommerce finance">
-      <h3>支付宝推广联盟</h3>
-      <p>支付宝生态推广平台，小程序、生活服务、金融产品推广</p>
-      <a href="https://open.alipay.com/" target="_blank">进入平台</a>
-    </div>
-
-    <!-- 5. 京东系（电商） -->
-    <div class="card" data-category="ecommerce">
-      <h3>京东联盟</h3>
-      <p>京东官方推广联盟，全品类商品、高佣分成、月结结算</p>
-      <a href="https://union.jd.com/" target="_blank">进入平台</a>
-    </div>
-    <div class="card" data-category="ecommerce">
-      <h3>京东芬香</h3>
-      <p>京东社交电商推广平台，社群带货、高佣返利、一键分享</p>
-      <a href="https://www.finxiang.com/" target="_blank">进入平台</a>
-    </div>
-
-    <!-- 6. 腾讯系（短视频+直播+搜索） -->
-    <div class="card" data-category="shortvideo live ecommerce">
-      <h3>微信视频号联盟</h3>
-      <p>微信视频号带货推广平台，私域流量、高佣结算、官方合规</p>
-      <a href="https://channels.weixin.qq.com/" target="_blank">进入平台</a>
-    </div>
-    <div class="card" data-category="search">
-      <h3>腾讯广告联盟</h3>
-      <p>腾讯系流量推广平台，公众号、小程序、APP广告分成</p>
-      <a href="https://e.qq.com/" target="_blank">进入平台</a>
-    </div>
-    <div class="card" data-category="search">
-      <h3>QQ推广联盟</h3>
-      <p>QQ生态推广平台，群聊、空间、小程序广告推广分成</p>
-      <a href="https://union.qq.com/" target="_blank">进入平台</a>
-    </div>
-
-    <!-- 7. 百度系（搜索） -->
-    <div class="card" data-category="search">
-      <h3>百度联盟</h3>
-      <p>百度搜索广告推广平台，网站、APP流量分成、高佣结算</p>
-      <a href="https://union.baidu.com/" target="_blank">进入平台</a>
-    </div>
-    <div class="card" data-category="article search">
-      <h3>百度百家号推广</h3>
-      <p>百家号内容变现平台，图文/视频广告分成、商单推广</p>
-      <a href="https://baijiahao.baidu.com/" target="_blank">进入平台</a>
-    </div>
-
-    <!-- 8. 360系（搜索） -->
-    <div class="card" data-category="search">
-      <h3>360推广联盟</h3>
-      <p>360流量生态推广平台，浏览器、搜索广告分成</p>
-      <a href="https://union.360.cn/" target="_blank">进入平台</a>
-    </div>
-
-    <!-- 9. 知乎系（图文） -->
-    <div class="card" data-category="article">
-      <h3>知乎商业推广</h3>
-      <p>知乎内容合作平台，品牌投放、商单推广、佣金结算</p>
-      <a href="https://zhuanlan.zhihu.com/qiye" target="_blank">进入平台</a>
-    </div>
-    <div class="card" data-category="article search">
-      <h3>知乎知+推广</h3>
-      <p>知乎官方内容加热平台，付费推广、商单转化</p>
-      <a href="https://zhuanlan.zhihu.com/zhiplus" target="_blank">进入平台</a>
-    </div>
-
-    <!-- 10. 其他主流 -->
-    <div class="card" data-category="shortvideo live">
-      <h3>B站花火平台</h3>
-      <p>B站官方商单平台，UP主推广、品牌合作、佣金结算</p>
-      <a href="https://huahuo.bilibili.com/" target="_blank">进入平台</a>
-    </div>
-    <div class="card" data-category="article shortvideo">
-      <h3>微博微任务</h3>
-      <p>微博达人商业合作平台，广告推广、商单对接、佣金结算</p>
-      <a href="https://weitask.weibo.com/" target="_blank">进入平台</a>
-    </div>
-    <div class="card" data-category="local">
-      <h3>美团推广联盟</h3>
-      <p>美团本地生活推广平台，到店、外卖、酒旅高佣推广</p>
-      <a href="https://union.meituan.com/" target="_blank">进入平台</a>
-    </div>
-    <div class="card" data-category="local ecommerce">
-      <h3>携程推广联盟</h3>
-      <p>携程旅游推广平台，机票、酒店、旅游产品高佣推广</p>
-      <a href="https://union.ctrip.com/" target="_blank">进入平台</a>
-    </div>
-  </div>
-</div>
-
-<!-- 分类筛选核心JS代码 -->
-<script>
-// 获取所有导航按钮和卡片
-const navLinks = document.querySelectorAll('.navbar a');
-const cards = document.querySelectorAll('.card');
-
-// 为每个导航按钮绑定点击事件
-navLinks.forEach(link => {
-  link.addEventListener('click', function() {
-    // 移除所有导航按钮的active类
-    navLinks.forEach(nav => nav.classList.remove('active'));
-    // 给当前点击的按钮添加active类
-    this.classList.add('active');
-    
-    // 获取当前点击的分类
-    const targetCategory = this.getAttribute('data-category');
-    
-    // 筛选卡片
-    cards.forEach(card => {
-      // 获取卡片的分类（多个分类用空格分隔）
-      const cardCategories = card.getAttribute('data-category').split(' ');
-      
-      // 首页显示所有卡片，其他分类只显示对应卡片
-      if (targetCategory === 'all' || cardCategories.includes(targetCategory)) {
-        card.classList.remove('hidden');
-      } else {
-        card.classList.add('hidden');
-      }
-    });
-  });
-});
-</script>
-
 </body>
 </html>
