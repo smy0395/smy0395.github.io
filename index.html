@@ -807,18 +807,68 @@ body {
     </div>
   </div>
 </main>
-
-<!-- 会员留言区 -->
-<section class="message-section">
-  <h2 class="message-title"><section class="message-section">
-  <h2 class="message-title">会员留言区</h2>
+  <h2 class="message-title">有问必答区</h1>
   <!-- 新增的留言展示区 -->
-  <div class="message-display" id="messageDisplay" style="max-width:1440px;margin:0 auto 24px;padding:0 20px;display:flex;flex-direction:column;gap:12px;"></div>
+<!-- 有问必答区 -->
+<div style="width:calc(100% - 800px);margin:20px auto;">
+  <h3 style="color:#fff;margin-bottom:15px;">有问必答区</h3>
+  <div id="msgBox" style="height:300px;border:2px solid #165DFF;border-radius:8px;background:#121212;padding:15px;overflow-y:auto;margin-bottom:15px;"></div>
+  <textarea id="msgInput" style="width:100%;min-height:80px;border:2px solid #165DFF;border-radius:6px;background:#1a1a1a;color:#fff;padding:12px;margin-bottom:10px;resize:vertical;" placeholder="请输入你的问题..."></textarea>
+  <button onclick="sendQ()" style="padding:10px 25px;border:none;border-radius:6px;background:#165DFF;color:#fff;cursor:pointer;float:right;">提交问题</button>
+  <div style="clear:both;"></div>
+</div>
+<script>
+function sendQ() {
+  let input = document.getElementById('msgInput');
+  let box = document.getElementById('msgBox');
+  let text = input.value.trim();
+  if(!text) return;
+  let time = new Date().toLocaleString();
+  let msgDiv = document.createElement('div');
+  msgDiv.style.background='#1f1f1f';
+  msgDiv.style.padding='12px';
+  msgDiv.style.borderRadius='6px';
+  msgDiv.style.marginBottom='10px';
+  msgDiv.innerHTML = `<p style="margin:0 0 5px 0;color:#ddd;">${text}</p><p style="margin:0;font-size:12px;color:#666;">${time}</p>`;
+  box.insertBefore(msgDiv, box.firstChild);
+  input.value='';
+  box.scrollTop=0;
+}
+document.getElementById('msgInput').addEventListener('keydown', function(e) {
+  if(e.key==='Enter' && !e.shiftKey) {
+    e.preventDefault();
+    sendQ();
+  }
+});
+</script>
+  <!-- 输入区 -->
+  <textarea id="msgInput" style="width:100%;min-height:80px;border:1px solid #333;border-radius:6px;background:#1a1a1a;color:#fff;padding:12px;margin-bottom:10px;resize:vertical;" placeholder="请输入你的问题..."></textarea>
+  <button onclick="sendQ()" style="padding:10px 25px;border:none;border-radius:6px;background:#165DFF;color:#fff;cursor:pointer;float:right;">提交问题</button>
+  <div style="clear:both;"></div>
+</div>
+
+<script>
+function sendQ() {
+  let input = document.getElementById('msgInput');
+  let box = document.getElementById('msgBox');
+  let text = input.value.trim();
+  if(!text) return;
   
-  <!-- 加宽后的留言输入框 -->
-  <div class="message-form" style="max-width:1440px;margin:0 auto;background-color:var(--dark-3);padding:32px;border-radius:12px;border:1px solid var(--border);">
-    <textarea class="message-textarea" placeholder="请输入您的留言（仅注册会员可提交）..."></textarea>
-    <button class="submit-btn" id="message-submit">提交留言</button>
+  let now = new Date();
+  let time = now.getFullYear()+'-'+(now.getMonth()+1)+'-'+now.getDate()+' '+now.getHours()+':'+now.getMinutes();
+  let msgDiv = document.createElement('div');
+  msgDiv.style.background='#1f1f1f';
+  msgDiv.style.padding='12px';
+  msgDiv.style.borderRadius='6px';
+  msgDiv.style.marginBottom='10px';
+  msgDiv.innerHTML = '<p style="margin:0 0 5px 0;color:#ddd;">'+text+'</p><p style="margin:0;font-size:12px;color:#666;">'+time+'</p>';
+  
+  box.insertBefore(msgDiv, box.firstChild);
+  input.value='';
+  box.scrollTop=0;
+}
+// 回车提交（Shift+回车换行）
+document.getElementById('msgInput').addEventListener('keydown',
   </div>
 </section>
 
