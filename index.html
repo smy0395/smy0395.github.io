@@ -1,239 +1,303 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>全网佣金联盟平台官网合集</title>
-    <style>
-        /* 全局样式重置 */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Microsoft YaHei", sans-serif;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全网高佣推广联盟导航 | 高端IT办公版</title>
+<style>
+/* 全局重置与基础样式 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-        body {
-            background-color: #f5f7fa;
-            padding: 20px;
-            line-height: 1.6;
-        }
+body {
+  font-family: "Microsoft YaHei", Arial, sans-serif;
+  /* 纯深色科技渐变背景（无森林、无突兀图片） */
+  background: linear-gradient(135deg, #0a0a10 0%, #1a1a2e 50%, #16213e 100%);
+  color: #e2e8f0;
+  min-height: 100vh;
+  position: relative;
+}
 
-        /* 页面容器 */
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-        }
+/* 高档办公场景底图（低透明度，不抢视觉焦点） */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://picsum.photos/id/180/1920/1080'); /* 高端办公场景图 */
+  background-size: cover;
+  background-position: center;
+  opacity: 0.12; /* 极低透明度，仅做氛围点缀 */
+  z-index: -1;
+}
 
-        /* 标题样式 */
-        h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 30px;
-            font-size: 24px;
-            border-bottom: 2px solid #0088ff;
-            padding-bottom: 10px;
-        }
+/* 顶部分类导航栏 */
+.navbar {
+  width: 100%;
+  background: rgba(15, 15, 30, 0.9);
+  padding: 18px 20px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+  border-bottom: 1px solid #3a435e;
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
 
-        /* 平台列表样式 */
-        .platform-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
+.navbar a {
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 8px 15px;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
 
-        /* 单个平台卡片 */
-        .platform-card {
-            padding: 20px;
-            border: 1px solid #eee;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
+.navbar a:hover {
+  background: rgba(74, 85, 104, 0.4);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
 
-        .platform-card:hover {
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transform: translateY(-2px);
-        }
+/* 内容容器 */
+.container {
+  max-width: 1400px;
+  margin: 50px auto;
+  padding: 0 20px;
+}
 
-        /* 平台名称 */
-        .platform-name {
-            font-size: 18px;
-            font-weight: bold;
-            color: #0088ff;
-            margin-bottom: 10px;
-        }
+.container h2 {
+  font-size: 28px;
+  margin-bottom: 40px;
+  text-align: center;
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(0,0,0,0.7);
+}
 
-        /* 平台描述 */
-        .platform-desc {
-            color: #666;
-            margin-bottom: 15px;
-            font-size: 14px;
-        }
+/* 25个平台卡片布局 */
+.card-box {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
+}
 
-        /* 网址样式 */
-        .platform-url {
-            position: relative;
-        }
+/* 平台卡片样式（高端磨砂感） */
+.card {
+  background: rgba(26, 32, 44, 0.75);
+  border: 1px solid #4a5568;
+  border-radius: 12px;
+  padding: 25px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+}
 
-        .url-text {
-            display: block;
-            background-color: #f8f9fa;
-            padding: 10px;
-            border-radius: 5px;
-            color: #333;
-            font-size: 14px;
-            word-break: break-all;
-            margin-bottom: 8px;
-        }
+.card:hover {
+  transform: translateY(-6px);
+  background: rgba(30, 41, 59, 0.85);
+  border-color: #64748b;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
 
-        /* 复制按钮 */
-        .copy-btn {
-            padding: 6px 12px;
-            background-color: #0088ff;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 12px;
-            transition: background-color 0.2s;
-        }
+.card h3 {
+  font-size: 19px;
+  margin-bottom: 12px;
+  color: #ffffff;
+}
 
-        .copy-btn:hover {
-            background-color: #0066cc;
-        }
+.card p {
+  font-size: 14px;
+  color: #94a3b8;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
 
-        .copy-btn.copied {
-            background-color: #28a745;
-        }
+/* 按钮样式（高端渐变） */
+.card a {
+  display: inline-block;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+  color: #ffffff;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.2s;
+  border: none;
+}
 
-        /* 移动端适配 */
-        @media (max-width: 768px) {
-            .container {
-                padding: 20px;
-            }
-            .platform-list {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+.card a:hover {
+  background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
+  transform: scale(1.03);
+}
+</style>
 </head>
+
 <body>
-    <div class="container">
-        <h1>全网佣金联盟平台官网合集</h1>
-        <div class="platform-list">
-            <!-- 淘宝联盟 -->
-            <div class="platform-card">
-                <div class="platform-name">淘宝联盟（阿里妈妈）</div>
-                <div class="platform-desc">阿里旗下核心电商佣金联盟，覆盖淘宝、天猫等平台，主流电商佣金渠道。</div>
-                <div class="platform-url">
-                    <span class="url-text" id="url1">https://pub.alimama.com/</span>
-                    <button class="copy-btn" onclick="copyUrl('url1', this)">点击复制网址</button>
-                </div>
-            </div>
+<!-- 完整分类导航栏 -->
+<div class="navbar">
+  <a href="#">首页</a>
+  <a href="#">电商联盟</a>
+  <a href="#">短视频推广</a>
+  <a href="#">图文内容</a>
+  <a href="#">搜索广告</a>
+  <a href="#">直播带货</a>
+  <a href="#">本地生活</a>
+  <a href="#">游戏推广</a>
+  <a href="#">金融联盟</a>
+</div>
 
-            <!-- 京东联盟 -->
-            <div class="platform-card">
-                <div class="platform-name">京东联盟</div>
-                <div class="platform-desc">京东官方佣金推广平台，覆盖京东全品类商品，佣金结算稳定。</div>
-                <div class="platform-url">
-                    <span class="url-text" id="url2">https://union.jd.com/</span>
-                    <button class="copy-btn" onclick="copyUrl('url2', this)">点击复制网址</button>
-                </div>
-            </div>
+<div class="container">
+  <h2>全网高佣推广联盟入口（25个完整平台）</h2>
 
-            <!-- 多多进宝 -->
-            <div class="platform-card">
-                <div class="platform-name">多多进宝</div>
-                <div class="platform-desc">拼多多官方佣金推广平台，低客单价高佣金，适合下沉市场推广。</div>
-                <div class="platform-url">
-                    <span class="url-text" id="url3">https://jinbao.pinduoduo.com/</span>
-                    <button class="copy-btn" onclick="copyUrl('url3', this)">点击复制网址</button>
-                </div>
-            </div>
-
-            <!-- 唯品会联盟 -->
-            <div class="platform-card">
-                <div class="platform-name">唯品会联盟</div>
-                <div class="platform-desc">唯品会官方推广平台，主打品牌特卖商品佣金推广。</div>
-                <div class="platform-url">
-                    <span class="url-text" id="url4">https://union.vip.com/</span>
-                    <button class="copy-btn" onclick="copyUrl('url4', this)">点击复制网址</button>
-                </div>
-            </div>
-
-            <!-- 抖音精选联盟 -->
-            <div class="platform-card">
-                <div class="platform-name">抖音精选联盟</div>
-                <div class="platform-desc">抖音电商官方佣金联盟，覆盖短视频/直播带货佣金推广。</div>
-                <div class="platform-url">
-                    <span class="url-text" id="url5">https://www.jinritemai.com/union/</span>
-                    <button class="copy-btn" onclick="copyUrl('url5', this)">点击复制网址</button>
-                </div>
-            </div>
-
-            <!-- 快手联盟 -->
-            <div class="platform-card">
-                <div class="platform-name">快手联盟</div>
-                <div class="platform-desc">快手官方电商佣金平台，适配快手直播/短视频带货场景。</div>
-                <div class="platform-url">
-                    <span class="url-text" id="url6">https://union.kuaishou.com/</span>
-                    <button class="copy-btn" onclick="copyUrl('url6', this)">点击复制网址</button>
-                </div>
-            </div>
-
-            <!-- 苏宁联盟 -->
-            <div class="platform-card">
-                <div class="platform-name">苏宁联盟</div>
-                <div class="platform-desc">苏宁易购官方推广平台，3C家电类商品佣金优势明显。</div>
-                <div class="platform-url">
-                    <span class="url-text" id="url7">https://union.suning.com/</span>
-                    <button class="copy-btn" onclick="copyUrl('url7', this)">点击复制网址</button>
-                </div>
-            </div>
-
-            <!-- 小红书品牌合作平台 -->
-            <div class="platform-card">
-                <div class="platform-name">小红书品牌合作平台</div>
-                <div class="platform-desc">小红书官方商单佣金平台，适合内容创作者对接品牌推广。</div>
-                <div class="platform-url">
-                    <span class="url-text" id="url8">https://brand.xiaohongshu.com/</span>
-                    <button class="copy-btn" onclick="copyUrl('url8', this)">点击复制网址</button>
-                </div>
-            </div>
-        </div>
+  <div class="card-box">
+    <!-- 1. 抖音系 -->
+    <div class="card">
+      <h3>抖音精选联盟</h3>
+      <p>抖音电商核心推广平台，达人带货、选品、高佣结算，官方可访问</p>
+      <a href="https://buyin.jinritemai.com/" target="_blank">进入平台</a>
+    </div>
+    <div class="card">
+      <h3>抖音星图商单</h3>
+      <p>抖音官方达人广告合作平台，品牌商单、内容推广、佣金结算</p>
+      <a href="https://star.toutiao.com/" target="_blank">进入平台</a>
+    </div>
+    <div class="card">
+      <h3>抖音本地推</h3>
+      <p>抖音本地生活推广联盟，餐饮、到店、服务类高佣推广</p>
+      <a href="https://business.douyin.com/" target="_blank">进入平台</a>
     </div>
 
-    <script>
-        // 复制网址功能
-        function copyUrl(urlId, btn) {
-            // 获取网址文本
-            const urlText = document.getElementById(urlId).textContent;
-            // 创建临时输入框
-            const tempInput = document.createElement('input');
-            tempInput.value = urlText;
-            document.body.appendChild(tempInput);
-            // 选中并复制
-            tempInput.select();
-            document.execCommand('copy');
-            // 移除临时输入框
-            document.body.removeChild(tempInput);
-            
-            // 按钮状态反馈
-            btn.textContent = '已复制 ✓';
-            btn.classList.add('copied');
-            // 3秒后恢复按钮状态
-            setTimeout(() => {
-                btn.textContent = '点击复制网址';
-                btn.classList.remove('copied');
-            }, 3000);
-            
-            // 可选：提示弹窗
-            alert('网址已复制成功：' + urlText);
-        }
-    </script>
+    <!-- 2. 快手系 -->
+    <div class="card">
+      <h3>快手好物联盟</h3>
+      <p>快手官方带货联盟，达人选品、佣金推广、实时结算</p>
+      <a href="https://union.kuaishou.com/" target="_blank">进入平台</a>
+    </div>
+    <div class="card">
+      <h3>快手磁力聚星</h3>
+      <p>快手达人商业合作平台，品牌推广、商单对接、佣金结算</p>
+      <a href="https://jx.kuaishou.com/" target="_blank">进入平台</a>
+    </div>
+
+    <!-- 3. 小红书系 -->
+    <div class="card">
+      <h3>小红书品牌合作</h3>
+      <p>小红书官方博主商单平台，图文/视频推广、佣金结算</p>
+      <a href="https://partner.xiaohongshu.com/" target="_blank">进入平台</a>
+    </div>
+    <div class="card">
+      <h3>小红书蒲公英</h3>
+      <p>小红书达人接单平台，品牌投放、内容合作、高佣推广</p>
+      <a href="https://pgy.xiaohongshu.com/" target="_blank">进入平台</a>
+    </div>
+
+    <!-- 4. 阿里系 -->
+    <div class="card">
+      <h3>淘宝联盟</h3>
+      <p>阿里妈妈核心推广平台，淘宝/天猫商品高佣推广</p>
+      <a href="https://pub.alimama.com/" target="_blank">进入平台</a>
+    </div>
+    <div class="card">
+      <h3>淘客推广联盟</h3>
+      <p>淘宝客专属推广平台，海量商品、高佣分成、实时结算</p>
+      <a href="https://taoke.alimama.com/" target="_blank">进入平台</a>
+    </div>
+    <div class="card">
+      <h3>支付宝推广联盟</h3>
+      <p>支付宝生态推广平台，小程序、生活服务、金融产品推广</p>
+      <a href="https://open.alipay.com/" target="_blank">进入平台</a>
+    </div>
+
+    <!-- 5. 京东系 -->
+    <div class="card">
+      <h3>京东联盟</h3>
+      <p>京东官方推广联盟，全品类商品、高佣分成、月结结算</p>
+      <a href="https://union.jd.com/" target="_blank">进入平台</a>
+    </div>
+    <div class="card">
+      <h3>京东芬香</h3>
+      <p>京东社交电商推广平台，社群带货、高佣返利、一键分享</p>
+      <a href="https://www.finxiang.com/" target="_blank">进入平台</a>
+    </div>
+
+    <!-- 6. 腾讯系 -->
+    <div class="card">
+      <h3>微信视频号联盟</h3>
+      <p>微信视频号带货推广平台，私域流量、高佣结算、官方合规</p>
+      <a href="https://channels.weixin.qq.com/" target="_blank">进入平台</a>
+    </div>
+    <div class="card">
+      <h3>腾讯广告联盟</h3>
+      <p>腾讯系流量推广平台，公众号、小程序、APP广告分成</p>
+      <a href="https://e.qq.com/" target="_blank">进入平台</a>
+    </div>
+    <div class="card">
+      <h3>QQ推广联盟</h3>
+      <p>QQ生态推广平台，群聊、空间、小程序广告推广分成</p>
+      <a href="https://union.qq.com/" target="_blank">进入平台</a>
+    </div>
+
+    <!-- 7. 百度系 -->
+    <div class="card">
+      <h3>百度联盟</h3>
+      <p>百度搜索广告推广平台，网站、APP流量分成、高佣结算</p>
+      <a href="https://union.baidu.com/" target="_blank">进入平台</a>
+    </div>
+    <div class="card">
+      <h3>百度百家号推广</h3>
+      <p>百家号内容变现平台，图文/视频广告分成、商单推广</p>
+      <a href="https://baijiahao.baidu.com/" target="_blank">进入平台</a>
+    </div>
+
+    <!-- 8. 360系 -->
+    <div class="card">
+      <h3>360推广联盟</h3>
+      <p>360流量生态推广平台，浏览器、搜索广告分成</p>
+      <a href="https://union.360.cn/" target="_blank">进入平台</a>
+    </div>
+
+    <!-- 9. 知乎系 -->
+    <div class="card">
+      <h3>知乎商业推广</h3>
+      <p>知乎内容合作平台，品牌投放、商单推广、佣金结算</p>
+      <a href="https://zhuanlan.zhihu.com/qiye" target="_blank">进入平台</a>
+    </div>
+    <div class="card">
+      <h3>知乎知+推广</h3>
+      <p>知乎官方内容加热平台，付费推广、商单转化</p>
+      <a href="https://zhuanlan.zhihu.com/zhiplus" target="_blank">进入平台</a>
+    </div>
+
+    <!-- 10. 其他主流 -->
+    <div class="card">
+      <h3>B站花火平台</h3>
+      <p>B站官方商单平台，UP主推广、品牌合作、佣金结算</p>
+      <a href="https://huahuo.bilibili.com/" target="_blank">进入平台</a>
+    </div>
+    <div class="card">
+      <h3>微博微任务</h3>
+      <p>微博达人商业合作平台，广告推广、商单对接、佣金结算</p>
+      <a href="https://weitask.weibo.com/" target="_blank">进入平台</a>
+    </div>
+    <div class="card">
+      <h3>美团推广联盟</h3>
+      <p>美团本地生活推广平台，到店、外卖、酒旅高佣推广</p>
+      <a href="https://union.meituan.com/" target="_blank">进入平台</a>
+    </div>
+    <div class="card">
+      <h3>携程推广联盟</h3>
+      <p>携程旅游推广平台，机票、酒店、旅游产品高佣推广</p>
+      <a href="https://union.ctrip.com/" target="_blank">进入平台</a>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
