@@ -638,8 +638,91 @@ body {
     height: 36px;
     font-size: 18px;
   }
-}
+}<head>
+    <meta charset="UTF-8">
+    <!-- 核心：手机自适应配置 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全网高佣推广联盟导航 | 官方旗舰版</title>
+    <!-- 修复样式：解决排版错乱、元素拉长 -->
+    <style>
+        /* 重置所有元素，防止乱拉伸 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        /* 页面主体适配手机 */
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            padding: 20px 15px; /* 手机端留边，不贴屏幕 */
+        }
+        /* 顶部标题栏 */
+        .header {
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 20px; /* 手机端字体缩小，适配屏幕 */
+            color: #fff;
+        }
+        .header p {
+            font-size: 12px;
+            color: #ccc;
+            margin-top: 5px;
+        }
+        /* 有问必答区标题 */
+        .qa-title {
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 20px;
+            line-height: 1.5; /* 防止文字挤在一起 */
+        }
+        /* 输入框：固定宽度，适配手机，不再拉长 */
+        .qa-input {
+            width: 100%; /* 手机端占满屏幕宽度 */
+            max-width: 300px; /* 限制最大宽度，不显得太宽 */
+            height: 200px; /* 固定高度，不再被拉长 */
+            background-color: #111;
+            border: 2px solid #007bff;
+            color: #fff;
+            padding: 10px;
+            margin: 0 auto 15px; /* 居中显示 */
+            display: block; /* 确保能居中 */
+            font-size: 14px;
+        }
+        /* 小输入框（如果有） */
+        .small-input {
+            width: 100%;
+            max-width: 120px;
+            height: 80px;
+            background-color: #111;
+            border: 2px solid #007bff;
+            color: #fff;
+            padding: 8px;
+            margin: 0 auto 20px;
+            display: block;
+            font-size: 12px;
+        }
+        /* 提交按钮：适配手机，居中且不缩小 */
+        .submit-btn {
+            width: 100%;
+            max-width: 150px;
+            height: 60px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 0 auto;
+            display: block; /* 居中显示 */
+        }
+    </style>
+</head>
 </style>
+
 </head>
 
 <body>
