@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>全网高佣推广联盟导航 | 官方旗舰版</title>
     <style>
 * {
@@ -33,6 +33,8 @@ body {
   color: var(--text-primary);
   min-height: 100vh;
   line-height: 1.5;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 /* 加载动画 */
@@ -63,12 +65,12 @@ body {
   100% { transform: rotate(360deg); }
 }
 
-/* 顶部品牌栏 */
+/* 顶部品牌栏 - 自适应优化 */
 .header {
   width: 100%;
   background-color: var(--dark-2);
   border-bottom: 1px solid var(--border);
-  padding: 16px 0;
+  padding: 12px 0;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -77,7 +79,7 @@ body {
 .header-container {
   max-width: 1440px;
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -85,57 +87,61 @@ body {
 .logo {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 .logo-icon {
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   background: linear-gradient(135deg, var(--primary), var(--primary-light));
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
   color: white;
 }
 .logo-text {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
   color: white;
 }
 .logo-tagline {
-  font-size: 12px;
+  font-size: 11px;
   color: var(--text-secondary);
   margin-top: 2px;
 }
 
-/* 导航栏 */
+/* 导航栏 - 移动端自适应优化 */
 .nav-main {
   background-color: var(--dark-3);
   border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 .nav-container {
   max-width: 1440px;
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 0;
 }
 .nav-list {
   display: flex;
   list-style: none;
-  gap: 2px;
-  flex-wrap: wrap;
+  gap: 1px;
+  padding: 0 10px;
+  min-width: fit-content;
 }
 .nav-item { position: relative; }
 .nav-link {
   display: block;
-  padding: 16px 24px;
+  padding: 12px 16px;
   color: var(--text-secondary);
   text-decoration: none;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
   transition: all 0.2s ease;
   cursor: pointer;
+  white-space: nowrap;
 }
 .nav-link:hover {
   color: var(--text-primary);
@@ -156,70 +162,71 @@ body {
   border-radius: 3px 3px 0 0;
 }
 
-/* 新闻滚动条 */
+/* 新闻滚动条 - 移动端优化 */
 .news-scroll {
   width: 100%;
   background-color: var(--dark-2);
   border-bottom: 1px solid var(--border);
   overflow: hidden;
   white-space: nowrap;
-  padding: 8px 0;
+  padding: 6px 0;
 }
 .news-scroll-content {
   display: inline-block;
-  animation: scroll 30s linear infinite;
+  animation: scroll 25s linear infinite;
   padding-left: 100%;
 }
 .news-scroll-item {
   display: inline-block;
-  padding: 0 20px;
+  padding: 0 15px;
   color: var(--text-primary);
-  font-size: 14px;
+  font-size: 13px;
 }
 .news-scroll-label {
   color: var(--primary);
   font-weight: 600;
-  margin-right: 10px;
+  margin-right: 8px;
 }
 @keyframes scroll {
   0% { transform: translateX(0); }
   100% { transform: translateX(-100%); }
 }
 
-/* 主内容区 */
+/* 主内容区 - 统一内外边距，和有问必答区对齐 */
 .main {
   max-width: 1440px;
   margin: 0 auto;
-  padding: 60px 40px 80px;
+  padding: 30px 20px 40px;
+  width: 100%;
 }
 .page-title {
-  font-size: 32px;
+  font-size: 24px;
   font-weight: 700;
   color: white;
   margin-bottom: 8px;
   text-align: center;
 }
 .page-desc {
-  font-size: 16px;
+  font-size: 14px;
   color: var(--text-secondary);
   text-align: center;
-  margin-bottom: 60px;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-bottom: 30px;
+  max-width: 100%;
+  line-height: 1.5;
 }
 
-/* 平台卡片 */
+/* 平台卡片 - 移动端自适应优化 */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  width: 100%;
 }
 .card {
   background-color: var(--dark-3);
   border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 32px;
+  border-radius: 10px;
+  padding: 20px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
@@ -227,7 +234,7 @@ body {
   text-decoration: none;
 }
 .card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-4px);
   box-shadow: var(--shadow-hover);
   border-color: var(--primary-light);
   background-color: var(--dark-2);
@@ -237,8 +244,8 @@ body {
   position: absolute;
   top: 0;
   right: 0;
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   background: linear-gradient(135deg, transparent 50%, rgba(22, 93, 255, 0.05) 50%);
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -246,38 +253,39 @@ body {
 .card:hover::before { opacity: 1; }
 .card.hidden { display: none; }
 .card-title {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   color: white;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 .card-title::before {
   content: "●";
   color: var(--primary);
-  font-size: 12px;
+  font-size: 10px;
 }
 .card-desc {
-  font-size: 14px;
+  font-size: 13px;
   color: var(--text-secondary);
-  line-height: 1.6;
-  margin-bottom: 24px;
+  line-height: 1.5;
+  margin-bottom: 18px;
 }
 .card-btn {
   display: inline-block;
-  padding: 12px 24px;
+  padding: 10px 20px;
   background: linear-gradient(135deg, var(--primary), var(--primary-light));
   color: white;
   border-radius: 8px;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
   transition: all 0.2s ease;
   border: none;
   cursor: pointer;
   text-align: center;
+  width: 100%;
 }
 .card-btn:hover {
   background: linear-gradient(135deg, #0E4BDB, var(--primary));
@@ -285,14 +293,14 @@ body {
   box-shadow: 0 4px 12px rgba(22, 93, 255, 0.3);
 }
 
-/* 弹窗通用样式 */
+/* 弹窗通用样式 - 移动端优化 */
 .modal {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -300,7 +308,7 @@ body {
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease;
-  padding: 20px;
+  padding: 15px;
 }
 .modal.active {
   opacity: 1;
@@ -308,10 +316,10 @@ body {
 }
 .modal-content {
   background-color: var(--dark-3);
-  border-radius: 12px;
-  padding: 32px;
+  border-radius: 10px;
+  padding: 24px;
   width: 100%;
-  max-width: 480px;
+  max-width: 400px;
   border: 1px solid var(--border);
   box-shadow: var(--shadow-hover);
   transform: translateY(-20px);
@@ -321,55 +329,55 @@ body {
 .modal.active .modal-content { transform: translateY(0); }
 .modal-close {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  font-size: 24px;
+  top: 15px;
+  right: 15px;
+  font-size: 22px;
   color: var(--text-secondary);
   cursor: pointer;
   transition: color 0.2s ease;
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .modal-close:hover { color: white; }
 .modal-title {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
   color: white;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   text-align: center;
 }
-.form-group { margin-bottom: 20px; }
+.form-group { margin-bottom: 18px; }
 .form-label {
   display: block;
-  margin-bottom: 8px;
-  font-size: 14px;
+  margin-bottom: 6px;
+  font-size: 13px;
   color: var(--text-primary);
 }
 .form-input {
   width: 100%;
-  padding: 12px 16px;
+  padding: 10px 14px;
   background-color: var(--dark-4);
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 6px;
   color: var(--text-primary);
-  font-size: 14px;
+  font-size: 13px;
   outline: none;
   transition: border-color 0.2s ease;
 }
 .form-input:focus { border-color: var(--primary); }
-.code-row { display: flex; gap: 10px; }
+.code-row { display: flex; gap: 8px; }
 .code-row input { flex: 1; }
 .code-btn {
-  width: 120px;
-  padding: 12px 10px;
+  width: 100px;
+  padding: 10px 8px;
   background: var(--primary);
   color: #fff;
   border: none;
-  border-radius: 8px;
-  font-size: 13px;
+  border-radius: 6px;
+  font-size: 12px;
   cursor: pointer;
   white-space: nowrap;
   transition: background 0.2s ease;
@@ -381,16 +389,16 @@ body {
 }
 .submit-btn {
   width: 100%;
-  padding: 14px;
+  padding: 12px;
   background: linear-gradient(135deg, var(--primary), var(--primary-light));
   color: white;
   border: none;
-  border-radius: 8px;
-  font-size: 16px;
+  border-radius: 6px;
+  font-size: 15px;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
-  margin-top: 10px;
+  margin-top: 8px;
 }
 .submit-btn:hover {
   background: linear-gradient(135deg, #0E4BDB, var(--primary));
@@ -398,14 +406,14 @@ body {
 /* 登录注册切换链接 */
 .form-switch {
   text-align: center;
-  margin-top: 15px;
-  font-size: 14px;
+  margin-top: 12px;
+  font-size: 13px;
   color: var(--text-secondary);
 }
 .form-switch a {
   color: var(--primary);
   text-decoration: none;
-  margin-left: 5px;
+  margin-left: 4px;
   transition: color 0.2s ease;
 }
 .form-switch a:hover {
@@ -413,109 +421,110 @@ body {
   text-decoration: underline;
 }
 
-/* 有问必答区 */
+/* 有问必答区 - 关键修改：和主内容区完全对齐 */
 .qa-section {
-  width: calc(100% - 80px);
-  margin: 20px auto;
+  max-width: 1440px;
+  margin: 0 auto 40px;
+  padding: 0 20px;
+  width: 100%;
 }
 .qa-title {
   color: #fff;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
+  font-size: 18px;
 }
 #msgBox {
-  height: 300px;
+  height: 250px;
   border: 2px solid #165DFF;
   border-radius: 8px;
   background: #121212;
-  padding: 15px;
+  padding: 12px;
   overflow-y: auto;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
+  width: 100%;
 }
 #msgInput {
   width: 100%;
-  min-height: 80px;
+  min-height: 70px;
   border: 2px solid #165DFF;
   border-radius: 6px;
   background: #1a1a1a;
   color: #fff;
-  padding: 12px;
-  margin-bottom: 10px;
+  padding: 10px;
+  margin-bottom: 8px;
   resize: vertical;
+  font-size: 14px;
 }
 .qa-submit {
-  padding: 10px 25px;
+  padding: 8px 20px;
   border: none;
   border-radius: 6px;
   background: #165DFF;
   color: #fff;
   cursor: pointer;
   float: right;
+  font-size: 14px;
 }
 .clearfix { clear: both; }
 
-/* 关于我们 */
+/* 关于我们 - 移动端优化 */
 .about-section {
   max-width: 1440px;
   margin: 0 auto;
-  padding: 40px 40px 60px;
+  padding: 20px 20px 30px;
   border-top: 1px solid var(--border);
   text-align: center;
+  width: 100%;
 }
 .about-title {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 600;
   color: white;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 .about-content {
-  font-size: 16px;
+  font-size: 14px;
   color: var(--text-secondary);
-  max-width: 800px;
+  max-width: 100%;
   margin: 0 auto;
-  line-height: 1.8;
+  line-height: 1.6;
 }
 .contact-info {
-  margin-top: 20px;
-  font-size: 16px;
+  margin-top: 15px;
+  font-size: 14px;
   color: var(--text-primary);
 }
 
-/* 响应式适配 */
-@media (max-width: 768px) {
-  .header-container, .nav-container, .main { padding: 0 20px; }
-  .main { padding: 40px 20px 60px; }
-  .card-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-  .card { padding: 24px; }
-  .page-title { font-size: 24px; }
-  .nav-link {
-    padding: 12px 16px;
-    font-size: 14px;
-  }
-  .news-scroll-item {
-    font-size: 12px;
-    padding: 0 10px;
-  }
-  .about-section { padding: 20px 20px 40px; }
-  .modal-content { padding: 24px; }
-  .code-row { flex-direction: column; }
-  .code-btn { width: 100%; }
-  .qa-section { width: calc(100% - 40px); }
+/* 大屏适配（平板/电脑） */
+@media (min-width: 768px) {
+  .header { padding: 16px 0; }
+  .header-container { padding: 0 40px; }
+  .logo-icon { width: 40px; height: 40px; font-size: 20px; }
+  .logo-text { font-size: 20px; }
+  
+  .nav-link { padding: 16px 24px; font-size: 15px; }
+  
+  .main { padding: 60px 40px 80px; }
+  .page-title { font-size: 32px; }
+  .page-desc { font-size: 16px; margin-bottom: 60px; max-width: 800px; }
+  
+  .card-grid { grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 24px; }
+  .card { padding: 32px; }
+  .card-title { font-size: 18px; }
+  .card-desc { font-size: 14px; }
+  
+  .qa-section { padding: 0 40px; margin-bottom: 60px; }
+  #msgBox { height: 300px; padding: 15px; }
+  #msgInput { min-height: 80px; padding: 12px; }
+  
+  .about-section { padding: 40px 40px 60px; }
+  .about-title { font-size: 24px; }
+  .about-content { font-size: 16px; max-width: 800px; }
 }
 
-@media (max-width: 480px) {
-  .nav-link {
-    padding: 10px 12px;
-    font-size: 13px;
-  }
-  .logo-text { font-size: 18px; }
-  .logo-icon {
-    width: 36px;
-    height: 36px;
-    font-size: 18px;
-  }
+/* 超大屏适配 */
+@media (min-width: 1200px) {
+  .card-grid { grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); }
 }
     </style>
 </head>
@@ -569,7 +578,7 @@ body {
   </div>
 </div>
 
-<!-- 主内容区：新增携程联盟，保留所有已筛选平台 -->
+<!-- 主内容区：统一边距，和有问必答区对齐 -->
 <main class="main">
   <h1 class="page-title">官方认证推广平台入口</h1>
   <p class="page-desc">汇聚主流高佣推广联盟，所有平台均为官方授权，保障推广收益安全合规</p>
@@ -641,7 +650,6 @@ body {
       <p class="card-desc">美团本地生活官方推广平台，外卖、闪购、酒店全品类推广，无技术服务费，微信生态分享体验佳。</p>
       <a href="https://union.meituan.com/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
-    <!-- 新增携程联盟：指定链接+官方核心优势 -->
     <div class="card" data-category="local">
       <h3 class="card-title">携程联盟</h3>
       <p class="card-desc">携程开放平台核心推广渠道，覆盖全旅游品类，支持图文/小程序/公众号带货，订单实时反馈、分成机制丰厚。</p>
@@ -650,7 +658,7 @@ body {
   </div>
 </main>
 
-<!-- 有问必答区 -->
+<!-- 有问必答区：和主内容区完全对齐 -->
 <div class="qa-section">
   <h3 class="qa-title">有问必答区</h3>
   <div id="msgBox"></div>
