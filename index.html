@@ -285,7 +285,7 @@ body {
   box-shadow: 0 4px 12px rgba(22, 93, 255, 0.3);
 }
 
-/* 注册弹窗 */
+/* 弹窗通用样式 */
 .modal {
   position: fixed;
   top: 0;
@@ -395,6 +395,23 @@ body {
 .submit-btn:hover {
   background: linear-gradient(135deg, #0E4BDB, var(--primary));
 }
+/* 登录注册切换链接 */
+.form-switch {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+.form-switch a {
+  color: var(--primary);
+  text-decoration: none;
+  margin-left: 5px;
+  transition: color 0.2s ease;
+}
+.form-switch a:hover {
+  color: var(--primary-light);
+  text-decoration: underline;
+}
 
 /* 有问必答区 */
 .qa-section {
@@ -419,7 +436,7 @@ body {
   min-height: 80px;
   border: 2px solid #165DFF;
   border-radius: 6px;
-  background: #1a1a12;
+  background: #1a1a1a;
   color: #fff;
   padding: 12px;
   margin-bottom: 10px;
@@ -522,7 +539,7 @@ body {
   </div>
 </header>
 
-<!-- 核心导航栏 -->
+<!-- 核心导航栏：含注册会员+会员登录 -->
 <nav class="nav-main">
   <div class="nav-container">
     <ul class="nav-list">
@@ -536,6 +553,7 @@ body {
       <li class="nav-item"><a class="nav-link" data-category="game">游戏推广</a></li>
       <li class="nav-item"><a class="nav-link" data-category="finance">金融联盟</a></li>
       <li class="nav-item"><a class="nav-link" id="register-btn">注册会员</a></li>
+      <li class="nav-item"><a class="nav-link" id="login-btn">会员登录</a></li>
     </ul>
   </div>
 </nav>
@@ -551,13 +569,12 @@ body {
   </div>
 </div>
 
-<!-- 主内容区：已删除抖音本地推，其他全部保留 -->
+<!-- 主内容区：新增携程联盟，保留所有已筛选平台 -->
 <main class="main">
   <h1 class="page-title">官方认证推广平台入口</h1>
   <p class="page-desc">汇聚主流高佣推广联盟，所有平台均为官方授权，保障推广收益安全合规</p>
 
   <div class="card-grid">
-
     <!-- 抖音 -->
     <div class="card" data-category="shortvideo live local">
       <h3 class="card-title">抖音精选联盟</h3>
@@ -582,7 +599,7 @@ body {
       <a href="https://member.bilibili.com/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
 
-    <!-- 电商 -->
+    <!-- 电商联盟 -->
     <div class="card" data-category="ecommerce">
       <h3 class="card-title">淘宝联盟</h3>
       <p class="card-desc">阿里妈妈核心推广平台，淘宝/天猫全品类商品高佣推广，数据追踪精准、结算周期稳定。</p>
@@ -606,7 +623,7 @@ body {
       <a href="https://pgy.xiaohongshu.com/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
 
-    <!-- 微信 -->
+    <!-- 微信系 -->
     <div class="card" data-category="shortvideo live ecommerce">
       <h3 class="card-title">微信视频号联盟</h3>
       <p class="card-desc">微信视频号官方带货平台，私域流量转化、高佣结算、合规性强，适合公众号/社群联动推广。</p>
@@ -618,13 +635,18 @@ body {
       <a href="https://mp.weixin.qq.com/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
 
-    <!-- 美团 -->
+    <!-- 本地生活+旅游 -->
     <div class="card" data-category="local">
       <h3 class="card-title">美团推广联盟</h3>
-      <p class="card-desc">美团本地生活官方推广平台，到店、外卖、酒旅高佣推广，本地化服务覆盖全。</p>
+      <p class="card-desc">美团本地生活官方推广平台，外卖、闪购、酒店全品类推广，无技术服务费，微信生态分享体验佳。</p>
       <a href="https://union.meituan.com/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
-
+    <!-- 新增携程联盟：指定链接+官方核心优势 -->
+    <div class="card" data-category="local">
+      <h3 class="card-title">携程联盟</h3>
+      <p class="card-desc">携程开放平台核心推广渠道，覆盖全旅游品类，支持图文/小程序/公众号带货，订单实时反馈、分成机制丰厚。</p>
+      <a href="https://u.ctrip.com/alliance/#/index" target="_blank" class="card-btn">进入官方平台</a>
+    </div>
   </div>
 </main>
 
@@ -674,7 +696,7 @@ document.getElementById('msgInput').addEventListener('keydown', function(e) {
 <!-- 注册会员弹窗 -->
 <div class="modal" id="register-modal">
   <div class="modal-content">
-    <span class="modal-close" id="modal-close">&times;</span>
+    <span class="modal-close" id="register-modal-close">&times;</span>
     <h3 class="modal-title">会员注册</h3>
     <form id="register-form">
       <div class="form-group">
@@ -683,21 +705,50 @@ document.getElementById('msgInput').addEventListener('keydown', function(e) {
       </div>
       <div class="form-group">
         <label class="form-label">手机号</label>
-        <input type="tel" class="form-input" name="phone" id="phone" placeholder="请输入手机号" required>
+        <input type="tel" class="form-input" name="phone" id="register-phone" placeholder="请输入手机号" required>
       </div>
       <div class="form-group code-row">
-        <input type="text" class="form-input" name="phoneCode" id="phoneCode" placeholder="请输入手机验证码" required>
-        <button type="button" class="code-btn" id="getPhoneCode">获取验证码</button>
+        <input type="text" class="form-input" name="phoneCode" id="register-phoneCode" placeholder="请输入手机验证码" required>
+        <button type="button" class="code-btn" id="register-getPhoneCode">获取验证码</button>
       </div>
       <div class="form-group">
         <label class="form-label">邮箱</label>
-        <input type="email" class="form-input" name="email" id="email" placeholder="请输入邮箱" required>
+        <input type="email" class="form-input" name="email" id="register-email" placeholder="请输入邮箱" required>
       </div>
       <div class="form-group code-row">
-        <input type="text" class="form-input" name="emailCode" id="emailCode" placeholder="请输入邮箱验证码" required>
-        <button type="button" class="code-btn" id="getEmailCode">获取验证码</button>
+        <input type="text" class="form-input" name="emailCode" id="register-emailCode" placeholder="请输入邮箱验证码" required>
+        <button type="button" class="code-btn" id="register-getEmailCode">获取验证码</button>
       </div>
       <button type="submit" class="submit-btn">提交注册</button>
+      <div class="form-switch">
+        已有账号？<a href="javascript:void(0)" id="to-login">立即登录</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- 会员登录弹窗 -->
+<div class="modal" id="login-modal">
+  <div class="modal-content">
+    <span class="modal-close" id="login-modal-close">&times;</span>
+    <h3 class="modal-title">会员登录</h3>
+    <form id="login-form">
+      <div class="form-group">
+        <label class="form-label">手机号/邮箱</label>
+        <input type="text" class="form-input" name="account" id="login-account" placeholder="请输入手机号或邮箱" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">密码</label>
+        <input type="password" class="form-input" name="password" id="login-password" placeholder="请输入登录密码" required>
+      </div>
+      <div class="form-group code-row">
+        <input type="text" class="form-input" name="verifyCode" id="login-verifyCode" placeholder="请输入验证码" required>
+        <button type="button" class="code-btn" id="login-getVerifyCode">获取验证码</button>
+      </div>
+      <button type="submit" class="submit-btn">立即登录</button>
+      <div class="form-switch">
+        还没账号？<a href="javascript:void(0)" id="to-register">立即注册</a>
+      </div>
     </form>
   </div>
 </div>
@@ -715,7 +766,7 @@ const navLinks = document.querySelectorAll('.nav-link');
 const cards = document.querySelectorAll('.card');
 navLinks.forEach(link => {
   link.addEventListener('click', function () {
-    if (this.id === 'register-btn') return;
+    if (this.id === 'register-btn' || this.id === 'login-btn') return;
     navLinks.forEach(nav => nav.classList.remove('active'));
     this.classList.add('active');
     const cat = this.dataset.category;
@@ -726,26 +777,54 @@ navLinks.forEach(link => {
   });
 });
 
-// 弹窗控制
+// 弹窗控制 - 注册
 const registerBtn = document.getElementById('register-btn');
-const modal = document.getElementById('register-modal');
-const closeBtn = document.getElementById('modal-close');
+const registerModal = document.getElementById('register-modal');
+const registerModalClose = document.getElementById('register-modal-close');
 registerBtn.onclick = () => {
-  modal.classList.add('active');
+  registerModal.classList.add('active');
   document.querySelector('#register-form input').focus();
 };
-closeBtn.onclick = () => modal.classList.remove('active');
-window.onclick = e => {
-  if (e.target === modal) modal.classList.remove('active');
+registerModalClose.onclick = () => registerModal.classList.remove('active');
+
+// 弹窗控制 - 登录
+const loginBtn = document.getElementById('login-btn');
+const loginModal = document.getElementById('login-modal');
+const loginModalClose = document.getElementById('login-modal-close');
+loginBtn.onclick = () => {
+  loginModal.classList.add('active');
+  document.querySelector('#login-form input').focus();
 };
+loginModalClose.onclick = () => loginModal.classList.remove('active');
+
+// 点击弹窗外部关闭
+window.onclick = e => {
+  if (e.target === registerModal) registerModal.classList.remove('active');
+  if (e.target === loginModal) loginModal.classList.remove('active');
+};
+
+// ESC键关闭弹窗
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && modal.classList.contains('active')) modal.classList.remove('active');
+  if (e.key === 'Escape') {
+    registerModal.classList.remove('active');
+    loginModal.classList.remove('active');
+  }
 });
 
-// 验证码逻辑
-let phoneCodeTimer = null;
-let emailCodeTimer = null;
-function startCodeTimer(btnId) {
+// 注册/登录弹窗切换
+document.getElementById('to-login').onclick = () => {
+  registerModal.classList.remove('active');
+  loginModal.classList.add('active');
+};
+document.getElementById('to-register').onclick = () => {
+  loginModal.classList.remove('active');
+  registerModal.classList.add('active');
+};
+
+// 验证码逻辑 - 注册
+let registerPhoneCodeTimer = null;
+let registerEmailCodeTimer = null;
+function startCodeTimer(btnId, timerVar) {
   const btn = document.getElementById(btnId);
   if (btn.disabled) return;
   btn.disabled = true;
@@ -757,45 +836,63 @@ function startCodeTimer(btnId) {
       clearInterval(timer);
       btn.disabled = false;
       btn.innerText = '获取验证码';
-      if (btnId === 'getPhoneCode') phoneCodeTimer = null;
-      else emailCodeTimer = null;
+      window[timerVar] = null;
     } else {
       btn.innerText = t + '秒后重发';
     }
   }, 1000);
-  if (btnId === 'getPhoneCode') phoneCodeTimer = timer;
-  else emailCodeTimer = timer;
+  window[timerVar] = timer;
 }
 
-// 手机验证码
-document.getElementById('getPhoneCode').onclick = function () {
-  const phone = document.getElementById('phone').value.trim();
+// 注册-手机验证码
+document.getElementById('register-getPhoneCode').onclick = function () {
+  const phone = document.getElementById('register-phone').value.trim();
   if (!/^1[3-9]\d{9}$/.test(phone)) {
     alert('请输入正确的11位手机号');
     return;
   }
   const code = Math.floor(100000 + Math.random() * 900000).toString();
-  alert(`验证码：${code}（仅演示）`);
-  startCodeTimer('getPhoneCode');
+  alert(`注册验证码：${code}（仅演示）`);
+  startCodeTimer('register-getPhoneCode', 'registerPhoneCodeTimer');
 };
 
-// 邮箱验证码
-document.getElementById('getEmailCode').onclick = function () {
-  const email = document.getElementById('email').value.trim();
+// 注册-邮箱验证码
+document.getElementById('register-getEmailCode').onclick = function () {
+  const email = document.getElementById('register-email').value.trim();
   if (!/^\S+@\S+\.\S+$/.test(email)) {
     alert('请输入正确的邮箱格式');
     return;
   }
   const code = Math.floor(100000 + Math.random() * 900000).toString();
-  alert(`验证码：${code}（仅演示）`);
-  startCodeTimer('getEmailCode');
+  alert(`注册邮箱验证码：${code}（仅演示）`);
+  startCodeTimer('register-getEmailCode', 'registerEmailCodeTimer');
+};
+
+// 登录-验证码
+document.getElementById('login-getVerifyCode').onclick = function () {
+  const account = document.getElementById('login-account').value.trim();
+  if (!account) {
+    alert('请先输入手机号/邮箱');
+    return;
+  }
+  const code = Math.floor(100000 + Math.random() * 900000).toString();
+  alert(`登录验证码：${code}（仅演示）`);
+  startCodeTimer('login-getVerifyCode', 'loginVerifyCodeTimer');
 };
 
 // 注册提交
 document.getElementById('register-form').addEventListener('submit', function (e) {
   e.preventDefault();
   alert('注册成功！（仅演示）');
-  modal.classList.remove('active');
+  registerModal.classList.remove('active');
+  this.reset();
+});
+
+// 登录提交
+document.getElementById('login-form').addEventListener('submit', function (e) {
+  e.preventDefault();
+  alert('登录成功！（仅演示）');
+  loginModal.classList.remove('active');
   this.reset();
 });
 
