@@ -192,7 +192,7 @@ body {
   100% { transform: translateX(-100%); }
 }
 
-/* 主内容区 - 统一内外边距，和有问必答区对齐 */
+/* 主内容区 - 统一内外边距，和留言栏对齐 */
 .main {
   max-width: 1440px;
   margin: 0 auto;
@@ -421,7 +421,7 @@ body {
   text-decoration: underline;
 }
 
-/* 有问必答区 - 关键修改：和主内容区完全对齐 */
+/* 留言栏 - 关键修改：和主内容区完全对齐 */
 .qa-section {
   max-width: 1440px;
   margin: 0 auto 40px;
@@ -460,6 +460,17 @@ body {
   border: none;
   border-radius: 6px;
   background: #165DFF;
+  color: #fff;
+  cursor: pointer;
+  float: right;
+  font-size: 14px;
+  margin-left: 10px;
+}
+.qa-clear {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 6px;
+  background: #ff4d4f;
   color: #fff;
   cursor: pointer;
   float: right;
@@ -578,7 +589,7 @@ body {
   </div>
 </div>
 
-<!-- 主内容区：统一边距，和有问必答区对齐 -->
+<!-- 主内容区：统一边距，和留言栏对齐 -->
 <main class="main">
   <h1 class="page-title">官方认证推广平台入口</h1>
   <p class="page-desc">汇聚主流高佣推广联盟，所有平台均为官方授权，保障推广收益安全合规</p>
@@ -658,12 +669,13 @@ body {
   </div>
 </main>
 
-<!-- 有问必答区：和主内容区完全对齐 -->
+<!-- 留言栏：替换原有有问必答区 -->
 <div class="qa-section">
-  <h3 class="qa-title">有问必答区</h3>
+  <h3 class="qa-title">留言栏</h3>
   <div id="msgBox"></div>
-  <textarea id="msgInput" placeholder="请输入你的问题..."></textarea>
-  <button onclick="sendQ()" class="qa-submit">提交问题</button>
+  <textarea id="msgInput" placeholder="请输入你的留言..."></textarea>
+  <button onclick="clearAllMsg()" class="qa-clear">清除留言</button>
+  <button onclick="sendQ()" class="qa-submit">提交留言</button>
   <div class="clearfix"></div>
 </div>
 
@@ -681,6 +693,16 @@ function sendQ() {
   input.value='';
   box.scrollTop=0;
 }
+
+// 新增清除所有留言的函数
+function clearAllMsg() {
+  // 确认是否清除
+  if(confirm('确定要清除所有留言吗？')) {
+    document.getElementById('msgBox').innerHTML = '';
+    document.getElementById('msgInput').value = '';
+  }
+}
+
 document.getElementById('msgInput').addEventListener('keydown', function(e) {
   if(e.key==='Enter' && !e.shiftKey) {
     e.preventDefault();
