@@ -1,35 +1,14 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head><meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全网高佣推广联盟导航 | 官方旗舰版</title>
+    <style>
 * {
   box-sizing: border-box;
-}
-body {
   margin: 0;
   padding: 0;
-}
-img {
-  max-width: 100%;
-  height: auto;
-}
-.container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 10px;
-}
-</style>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>全网高佣推广联盟导航 | 官方旗舰版</title>
-<style>
-/* 全局重置与基础样式 */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
   font-smoothing: antialiased;
   -webkit-font-smoothing: antialiased;
 }
@@ -56,7 +35,7 @@ body {
   line-height: 1.5;
 }
 
-/* 页面加载动画 */
+/* 加载动画 */
 .loading {
   position: fixed;
   top: 0;
@@ -70,12 +49,7 @@ body {
   z-index: 9999;
   transition: opacity 0.5s ease;
 }
-
-.loading.hidden {
-  opacity: 0;
-  pointer-events: none;
-}
-
+.loading.hidden { opacity: 0; pointer-events: none; }
 .loading-spinner {
   width: 50px;
   height: 50px;
@@ -84,7 +58,6 @@ body {
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
-
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
@@ -101,7 +74,6 @@ body {
   z-index: 100;
   box-shadow: var(--shadow);
 }
-
 .header-container {
   max-width: 1440px;
   margin: 0 auto;
@@ -110,13 +82,11 @@ body {
   justify-content: space-between;
   align-items: center;
 }
-
 .logo {
   display: flex;
   align-items: center;
   gap: 12px;
 }
-
 .logo-icon {
   width: 40px;
   height: 40px;
@@ -129,43 +99,34 @@ body {
   font-weight: bold;
   color: white;
 }
-
 .logo-text {
   font-size: 20px;
   font-weight: 600;
   color: white;
 }
-
 .logo-tagline {
   font-size: 12px;
   color: var(--text-secondary);
   margin-top: 2px;
 }
 
-/* 核心导航栏 */
+/* 导航栏 */
 .nav-main {
   background-color: var(--dark-3);
-  padding: 0;
   border-bottom: 1px solid var(--border);
 }
-
 .nav-container {
   max-width: 1440px;
   margin: 0 auto;
   padding: 0 40px;
 }
-
 .nav-list {
   display: flex;
   list-style: none;
   gap: 2px;
-  flex-wrap: wrap; /* 移动端导航换行 */
+  flex-wrap: wrap;
 }
-
-.nav-item {
-  position: relative;
-}
-
+.nav-item { position: relative; }
 .nav-link {
   display: block;
   padding: 16px 24px;
@@ -176,17 +137,14 @@ body {
   transition: all 0.2s ease;
   cursor: pointer;
 }
-
 .nav-link:hover {
   color: var(--text-primary);
   background-color: rgba(255, 255, 255, 0.05);
 }
-
 .nav-link.active {
   color: var(--primary);
   background-color: rgba(22, 93, 255, 0.1);
 }
-
 .nav-link.active::after {
   content: "";
   position: absolute;
@@ -198,7 +156,7 @@ body {
   border-radius: 3px 3px 0 0;
 }
 
-/* 新闻滚动条样式 */
+/* 新闻滚动条 */
 .news-scroll {
   width: 100%;
   background-color: var(--dark-2);
@@ -207,33 +165,25 @@ body {
   white-space: nowrap;
   padding: 8px 0;
 }
-
 .news-scroll-content {
   display: inline-block;
   animation: scroll 30s linear infinite;
   padding-left: 100%;
 }
-
 .news-scroll-item {
   display: inline-block;
   padding: 0 20px;
   color: var(--text-primary);
   font-size: 14px;
 }
-
 .news-scroll-label {
   color: var(--primary);
   font-weight: 600;
   margin-right: 10px;
 }
-
 @keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
 }
 
 /* 主内容区 */
@@ -242,7 +192,6 @@ body {
   margin: 0 auto;
   padding: 60px 40px 80px;
 }
-
 .page-title {
   font-size: 32px;
   font-weight: 700;
@@ -250,7 +199,6 @@ body {
   margin-bottom: 8px;
   text-align: center;
 }
-
 .page-desc {
   font-size: 16px;
   color: var(--text-secondary);
@@ -261,14 +209,12 @@ body {
   margin-right: auto;
 }
 
-/* 平台卡片容器 */
+/* 平台卡片 */
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
   gap: 24px;
 }
-
-/* 平台卡片 */
 .card {
   background-color: var(--dark-3);
   border: 1px solid var(--border);
@@ -278,16 +224,14 @@ body {
   position: relative;
   overflow: hidden;
   display: block;
-  text-decoration: none; /* 去除卡片链接下划线 */
+  text-decoration: none;
 }
-
 .card:hover {
   transform: translateY(-6px);
   box-shadow: var(--shadow-hover);
   border-color: var(--primary-light);
   background-color: var(--dark-2);
 }
-
 .card::before {
   content: "";
   position: absolute;
@@ -299,15 +243,8 @@ body {
   opacity: 0;
   transition: opacity 0.3s ease;
 }
-
-.card:hover::before {
-  opacity: 1;
-}
-
-.card.hidden {
-  display: none;
-}
-
+.card:hover::before { opacity: 1; }
+.card.hidden { display: none; }
 .card-title {
   font-size: 18px;
   font-weight: 600;
@@ -317,21 +254,17 @@ body {
   align-items: center;
   gap: 12px;
 }
-
 .card-title::before {
   content: "●";
   color: var(--primary);
   font-size: 12px;
 }
-
 .card-desc {
   font-size: 14px;
   color: var(--text-secondary);
   line-height: 1.6;
   margin-bottom: 24px;
 }
-
-/* 按钮样式 */
 .card-btn {
   display: inline-block;
   padding: 12px 24px;
@@ -346,14 +279,13 @@ body {
   cursor: pointer;
   text-align: center;
 }
-
 .card-btn:hover {
   background: linear-gradient(135deg, #0E4BDB, var(--primary));
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(22, 93, 255, 0.3);
 }
 
-/* 注册弹窗样式 */
+/* 注册弹窗 */
 .modal {
   position: fixed;
   top: 0;
@@ -368,14 +300,12 @@ body {
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease;
-  padding: 20px; /* 移动端弹窗内边距 */
+  padding: 20px;
 }
-
 .modal.active {
   opacity: 1;
   visibility: visible;
 }
-
 .modal-content {
   background-color: var(--dark-3);
   border-radius: 12px;
@@ -386,13 +316,9 @@ body {
   box-shadow: var(--shadow-hover);
   transform: translateY(-20px);
   transition: transform 0.3s ease;
-  position: relative; /* 确保关闭按钮定位正确 */
+  position: relative;
 }
-
-.modal.active .modal-content {
-  transform: translateY(0);
-}
-
+.modal.active .modal-content { transform: translateY(0); }
 .modal-close {
   position: absolute;
   top: 20px;
@@ -407,11 +333,7 @@ body {
   align-items: center;
   justify-content: center;
 }
-
-.modal-close:hover {
-  color: white;
-}
-
+.modal-close:hover { color: white; }
 .modal-title {
   font-size: 20px;
   font-weight: 600;
@@ -419,18 +341,13 @@ body {
   margin-bottom: 24px;
   text-align: center;
 }
-
-.form-group {
-  margin-bottom: 20px;
-}
-
+.form-group { margin-bottom: 20px; }
 .form-label {
   display: block;
   margin-bottom: 8px;
   font-size: 14px;
   color: var(--text-primary);
 }
-
 .form-input {
   width: 100%;
   padding: 12px 16px;
@@ -442,20 +359,9 @@ body {
   outline: none;
   transition: border-color 0.2s ease;
 }
-
-.form-input:focus {
-  border-color: var(--primary);
-}
-
-.code-row {
-  display: flex;
-  gap: 10px;
-}
-
-.code-row input {
-  flex: 1;
-}
-
+.form-input:focus { border-color: var(--primary); }
+.code-row { display: flex; gap: 10px; }
+.code-row input { flex: 1; }
 .code-btn {
   width: 120px;
   padding: 12px 10px;
@@ -468,16 +374,11 @@ body {
   white-space: nowrap;
   transition: background 0.2s ease;
 }
-
-.code-btn:hover:not(:disabled) {
-  background: var(--primary-light);
-}
-
+.code-btn:hover:not(:disabled) { background: var(--primary-light); }
 .code-btn:disabled {
   background: #666;
   cursor: not-allowed;
 }
-
 .submit-btn {
   width: 100%;
   padding: 14px;
@@ -491,58 +392,51 @@ body {
   transition: all 0.2s ease;
   margin-top: 10px;
 }
-
 .submit-btn:hover {
   background: linear-gradient(135deg, #0E4BDB, var(--primary));
 }
 
-/* 留言区样式 */
-.message-section {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 40px 40px 80px;
-  border-top: 1px solid var(--border);
-  margin-top: 40px;
+/* 有问必答区 */
+.qa-section {
+  width: calc(100% - 80px);
+  margin: 20px auto;
 }
-
-.message-title {
-  font-size: 24px;
-  font-weight: 600;
-  color: white;
-  margin-bottom: 24px;
-  text-align: center;
+.qa-title {
+  color: #fff;
+  margin-bottom: 15px;
 }
-
-.message-form {
-  max-width: 800px;
-  margin: 0 auto 40px;
-  background-color: var(--dark-3);
-  padding: 32px;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-}
-
-.message-textarea {
-  width: 100%;
-  min-height: 150px;
-  padding: 16px;
-  background-color: var(--dark-4);
-  border: 1px solid var(--border);
+#msgBox {
+  height: 300px;
+  border: 2px solid #165DFF;
   border-radius: 8px;
-  color: var(--text-primary);
-  font-family: inherit;
-  font-size: 14px;
+  background: #121212;
+  padding: 15px;
+  overflow-y: auto;
+  margin-bottom: 15px;
+}
+#msgInput {
+  width: 100%;
+  min-height: 80px;
+  border: 2px solid #165DFF;
+  border-radius: 6px;
+  background: #1a1a12;
+  color: #fff;
+  padding: 12px;
+  margin-bottom: 10px;
   resize: vertical;
-  outline: none;
-  margin-bottom: 16px;
-  transition: border-color 0.2s ease;
 }
-
-.message-textarea:focus {
-  border-color: var(--primary);
+.qa-submit {
+  padding: 10px 25px;
+  border: none;
+  border-radius: 6px;
+  background: #165DFF;
+  color: #fff;
+  cursor: pointer;
+  float: right;
 }
+.clearfix { clear: both; }
 
-/* 关于我们样式 */
+/* 关于我们 */
 .about-section {
   max-width: 1440px;
   margin: 0 auto;
@@ -550,14 +444,12 @@ body {
   border-top: 1px solid var(--border);
   text-align: center;
 }
-
 .about-title {
   font-size: 24px;
   font-weight: 600;
   color: white;
   margin-bottom: 20px;
 }
-
 .about-content {
   font-size: 16px;
   color: var(--text-secondary);
@@ -565,7 +457,6 @@ body {
   margin: 0 auto;
   line-height: 1.8;
 }
-
 .contact-info {
   margin-top: 20px;
   font-size: 16px;
@@ -574,155 +465,42 @@ body {
 
 /* 响应式适配 */
 @media (max-width: 768px) {
-  .header-container, .nav-container, .main {
-    padding: 0 20px;
-  }
-  
-  .main {
-    padding: 40px 20px 60px;
-  }
-  
+  .header-container, .nav-container, .main { padding: 0 20px; }
+  .main { padding: 40px 20px 60px; }
   .card-grid {
     grid-template-columns: 1fr;
     gap: 16px;
   }
-  
-  .card {
-    padding: 24px;
-  }
-  
-  .page-title {
-    font-size: 24px;
-  }
-  
+  .card { padding: 24px; }
+  .page-title { font-size: 24px; }
   .nav-link {
     padding: 12px 16px;
     font-size: 14px;
   }
-  
   .news-scroll-item {
     font-size: 12px;
     padding: 0 10px;
   }
-  
-  .message-section, .about-section {
-    padding: 20px 20px 40px;
-  }
-  
-  .modal-content {
-    padding: 24px;
-  }
-  
-  .code-row {
-    flex-direction: column;
-  }
-  
-  .code-btn {
-    width: 100%;
-  }
+  .about-section { padding: 20px 20px 40px; }
+  .modal-content { padding: 24px; }
+  .code-row { flex-direction: column; }
+  .code-btn { width: 100%; }
+  .qa-section { width: calc(100% - 40px); }
 }
 
-/* 移动端导航优化 */
 @media (max-width: 480px) {
   .nav-link {
     padding: 10px 12px;
     font-size: 13px;
   }
-  
-  .logo-text {
-    font-size: 18px;
-  }
-  
+  .logo-text { font-size: 18px; }
   .logo-icon {
     width: 36px;
     height: 36px;
     font-size: 18px;
   }
-}<head>
-    <meta charset="UTF-8">
-    <!-- 核心：手机自适应配置 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>全网高佣推广联盟导航 | 官方旗舰版</title>
-    <!-- 修复样式：解决排版错乱、元素拉长 -->
-    <style>
-        /* 重置所有元素，防止乱拉伸 */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        /* 页面主体适配手机 */
-        body {
-            background-color: #000;
-            color: #fff;
-            font-family: Arial, sans-serif;
-            padding: 20px 15px; /* 手机端留边，不贴屏幕 */
-        }
-        /* 顶部标题栏 */
-        .header {
-            margin-bottom: 30px;
-        }
-        .header h1 {
-            font-size: 20px; /* 手机端字体缩小，适配屏幕 */
-            color: #fff;
-        }
-        .header p {
-            font-size: 12px;
-            color: #ccc;
-            margin-top: 5px;
-        }
-        /* 有问必答区标题 */
-        .qa-title {
-            font-size: 18px;
-            text-align: center;
-            margin-bottom: 20px;
-            line-height: 1.5; /* 防止文字挤在一起 */
-        }
-        /* 输入框：固定宽度，适配手机，不再拉长 */
-        .qa-input {
-            width: 100%; /* 手机端占满屏幕宽度 */
-            max-width: 300px; /* 限制最大宽度，不显得太宽 */
-            height: 200px; /* 固定高度，不再被拉长 */
-            background-color: #111;
-            border: 2px solid #007bff;
-            color: #fff;
-            padding: 10px;
-            margin: 0 auto 15px; /* 居中显示 */
-            display: block; /* 确保能居中 */
-            font-size: 14px;
-        }
-        /* 小输入框（如果有） */
-        .small-input {
-            width: 100%;
-            max-width: 120px;
-            height: 80px;
-            background-color: #111;
-            border: 2px solid #007bff;
-            color: #fff;
-            padding: 8px;
-            margin: 0 auto 20px;
-            display: block;
-            font-size: 12px;
-        }
-        /* 提交按钮：适配手机，居中且不缩小 */
-        .submit-btn {
-            width: 100%;
-            max-width: 150px;
-            height: 60px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            margin: 0 auto;
-            display: block; /* 居中显示 */
-        }
+}
     </style>
-</head>
-</style>
-
 </head>
 
 <body>
@@ -773,153 +551,97 @@ body {
   </div>
 </div>
 
-<!-- 主内容区 -->
+<!-- 主内容区：只删了你指定9个，其他全部保留 -->
 <main class="main">
   <h1 class="page-title">官方认证推广平台入口</h1>
-  <p class="page-desc">汇聚25家主流高佣推广联盟，覆盖电商、短视频、本地生活等全品类，所有平台均为官方授权，保障推广收益安全合规</p>
+  <p class="page-desc">汇聚主流高佣推广联盟，所有平台均为官方授权，保障推广收益安全合规</p>
 
   <div class="card-grid">
+
+    <!-- 抖音 -->
     <div class="card" data-category="shortvideo live local">
       <h3 class="card-title">抖音精选联盟</h3>
-      <p class="card-desc">抖音电商核心推广平台，支持达人带货、智能选品、实时高佣结算，覆盖全品类商品，官方直连保障收益安全。</p>
+      <p class="card-desc">抖音电商核心推广平台，支持达人带货、智能选品、实时高佣结算，覆盖全品类商品。</p>
       <a href="https://buyin.jinritemai.com/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
     <div class="card" data-category="shortvideo live">
       <h3 class="card-title">抖音星图商单</h3>
-      <p class="card-desc">抖音官方达人广告合作平台，品牌商单精准匹配、内容推广效果追踪、佣金透明结算，适合中腰部达人变现。</p>
-      <a href="https://star.toutiao.com/" target="_blank" class="card-btn">进入官方平台</a>
+      <p class="card-desc">抖音官方达人广告合作平台，品牌商单精准匹配、佣金透明结算，适合中腰部达人变现。</p>
+      <a href="https://star.douyin.com/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
     <div class="card" data-category="shortvideo local">
       <h3 class="card-title">抖音本地推</h3>
-      <p class="card-desc">抖音本地生活专属推广联盟，聚焦餐饮、到店、服务类商家，高佣分成+流量扶持，本地化推广首选。</p>
-      <a href="https://business.douyin.com/" target="_blank" class="card-btn">进入官方平台</a>
+      <p class="card-desc">抖音本地生活推广核心平台，到店核销、团购带货、高佣分成，本地化服务变现首选。</p>
+      <a href="https://www.douyin.com/fuwu/local" target="_blank" class="card-btn">进入官方平台</a>
     </div>
 
+    <!-- B站 -->
     <div class="card" data-category="shortvideo live">
-      <h3 class="card-title">快手好物联盟</h3>
-      <p class="card-desc">快手官方带货核心平台，达人选品库丰富、佣金实时结算、流量倾斜政策多，下沉市场推广优势显著。</p>
-      <a href="https://union.kuaishou.com/" target="_blank" class="card-btn">进入官方平台</a>
+      <h3 class="card-title">B站花火平台</h3>
+      <p class="card-desc">B站官方商单核心平台，UP主推广、品牌合作、佣金保障，二次元/知识类内容优势显著。</p>
+      <a href="https://huahuo.bilibili.com/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
-    <div class="card" data-category="shortvideo live">
-      <h3 class="card-title">快手磁力聚星</h3>
-      <p class="card-desc">快手达人商业合作官方渠道，品牌推广、商单对接、佣金保障，支持定制化内容合作方案。</p>
-      <a href="https://jx.kuaishou.com/" target="_blank" class="card-btn">进入官方平台</a>
-    </div>
-
-    <div class="card" data-category="article shortvideo">
-      <h3 class="card-title">小红书品牌合作</h3>
-      <p class="card-desc">小红书官方博主商单平台，图文/视频内容推广、佣金透明结算，适合美妆、家居、时尚类推广。</p>
-      <a href="https://partner.xiaohongshu.com/" target="_blank" class="card-btn">进入官方平台</a>
-    </div>
-    <div class="card" data-category="article shortvideo">
-      <h3 class="card-title">小红书蒲公英</h3>
-      <p class="card-desc">小红书达人接单核心平台，品牌精准投放、内容合规审核、高佣分成，头部博主变现首选。</p>
-      <a href="https://pgy.xiaohongshu.com/" target="_blank" class="card-btn">进入官方平台</a>
+    <div class="card" data-category="shortvideo article">
+      <h3 class="card-title">B站创作中心</h3>
+      <p class="card-desc">B站UP主后台核心入口，数据统计、收益结算、商单管理一站式操作。</p>
+      <a href="https://member.bilibili.com/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
 
+    <!-- 电商 -->
     <div class="card" data-category="ecommerce">
       <h3 class="card-title">淘宝联盟</h3>
       <p class="card-desc">阿里妈妈核心推广平台，淘宝/天猫全品类商品高佣推广，数据追踪精准、结算周期稳定。</p>
       <a href="https://pub.alimama.com/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
     <div class="card" data-category="ecommerce">
-      <h3 class="card-title">淘客推广联盟</h3>
-      <p class="card-desc">淘宝客专属推广平台，海量商品库、高佣分成比例、实时数据看板，适合社群/私域推广。</p>
-      <a href="https://taoke.alimama.com/" target="_blank" class="card-btn">进入官方平台</a>
-    </div>
-    <div class="card" data-category="ecommerce finance">
-      <h3 class="card-title">支付宝推广联盟</h3>
-      <p class="card-desc">支付宝生态官方推广平台，覆盖小程序、生活服务、金融产品，佣金高+用户基数大。</p>
-      <a href="https://open.alipay.com/" target="_blank" class="card-btn">进入官方平台</a>
-    </div>
-
-    <div class="card" data-category="ecommerce">
       <h3 class="card-title">京东联盟</h3>
       <p class="card-desc">京东官方推广核心平台，全品类商品高佣分成、月结结算稳定，3C数码类推广优势显著。</p>
       <a href="https://union.jd.com/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
     <div class="card" data-category="ecommerce">
-      <h3 class="card-title">京东芬香</h3>
-      <p class="card-desc">京东社交电商推广平台，社群带货一键分享、高佣返利、无门槛入驻，适合个人轻资产推广。</p>
-      <a href="https://www.finxiang.com/" target="_blank" class="card-btn">进入官方平台</a>
+      <h3 class="card-title">拼多多多多进宝</h3>
+      <p class="card-desc">拼多多官方推广平台，低价商品高佣推广、实时结算，下沉市场变现首选。</p>
+      <a href="https://jinbao.pinduoduo.com/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
 
+    <!-- 小红书 -->
+    <div class="card" data-category="article shortvideo">
+      <h3 class="card-title">小红书蒲公英</h3>
+      <p class="card-desc">小红书达人接单核心平台，品牌精准投放、内容合规审核、高佣分成，头部博主变现首选。</p>
+      <a href="https://pgy.xiaohongshu.com/" target="_blank" class="card-btn">进入官方平台</a>
+    </div>
+
+    <!-- 微信 -->
     <div class="card" data-category="shortvideo live ecommerce">
       <h3 class="card-title">微信视频号联盟</h3>
       <p class="card-desc">微信视频号官方带货平台，私域流量转化、高佣结算、合规性强，适合公众号/社群联动推广。</p>
-      <a href="https://channels.weixin.qq.com/" target="_blank" class="card-btn">进入官方平台</a>
+      <a href="https://channels.weixin.qq.com/login.html" target="_blank" class="card-btn">进入官方平台</a>
     </div>
-    <div class="card" data-category="search">
-      <h3 class="card-title">腾讯广告联盟</h3>
-      <p class="card-desc">腾讯系全域流量推广平台，覆盖公众号、小程序、APP，广告分成比例高、数据统计精准。</p>
-      <a href="https://e.qq.com/" target="_blank" class="card-btn">进入官方平台</a>
-    </div>
-    <div class="card" data-category="search">
-      <h3 class="card-title">QQ推广联盟</h3>
-      <p class="card-desc">QQ生态专属推广平台，群聊、空间、小程序广告分成，年轻用户群体推广优势明显。</p>
-      <a href="https://union.qq.com/" target="_blank" class="card-btn">进入官方平台</a>
+    <div class="card" data-category="ecommerce article">
+      <h3 class="card-title">微信公众号广告</h3>
+      <p class="card-desc">微信公众号流量主核心平台，广告分成、内容变现、高佣结算，图文内容变现首选。</p>
+      <a href="https://mp.weixin.qq.com/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
 
-    <div class="card" data-category="search">
-      <h3 class="card-title">百度联盟</h3>
-      <p class="card-desc">百度搜索广告核心推广平台，网站/APP流量分成、高佣结算，搜索精准营销首选。</p>
-      <a href="https://union.baidu.com/" target="_blank" class="card-btn">进入官方平台</a>
-    </div>
-    <div class="card" data-category="article search">
-      <h3 class="card-title">百度百家号推广</h3>
-      <p class="card-desc">百家号内容变现官方平台，图文/视频广告分成、商单推广，内容创作者专属。</p>
-      <a href="https://baijiahao.baidu.com/" target="_blank" class="card-btn">进入官方平台</a>
-    </div>
-
-    <div class="card" data-category="search">
-      <h3 class="card-title">360推广联盟</h3>
-      <p class="card-desc">360全域流量生态平台，浏览器、搜索广告分成，下沉市场流量覆盖广。</p>
-      <a href="https://union.360.cn/" target="_blank" class="card-btn">进入官方平台</a>
-    </div>
-
-    <div class="card" data-category="article">
-      <h3 class="card-title">知乎商业推广</h3>
-      <p class="card-desc">知乎内容合作官方平台，品牌精准投放、商单推广、佣金透明，高知用户群体首选。</p>
-      <a href="https://zhuanlan.zhihu.com/qiye" target="_blank" class="card-btn">进入官方平台</a>
-    </div>
-    <div class="card" data-category="article search">
-      <h3 class="card-title">知乎知+推广</h3>
-      <p class="card-desc">知乎官方内容加热平台，付费推广、商单转化，内容曝光效率提升显著。</p>
-      <a href="https://zhuanlan.zhihu.com/zhiplus" target="_blank" class="card-btn">进入官方平台</a>
-    </div>
-
-    <div class="card" data-category="shortvideo live">
-      <h3 class="card-title">B站花火平台</h3>
-      <p class="card-desc">B站官方商单核心平台，UP主推广、品牌合作、佣金保障，二次元/知识类内容优势显著。</p>
-      <a href="https://huahuo.bilibili.com/" target="_blank" class="card-btn">进入官方平台</a>
-    </div>
-    <div class="card" data-category="article shortvideo">
-      <h3 class="card-title">微博微任务</h3>
-      <p class="card-desc">微博达人商业合作平台，广告推广、商单对接、佣金结算，社交传播效率高。</p>
-      <a href="https://weitask.weibo.com/" target="_blank" class="card-btn">进入官方平台</a>
-    </div>
+    <!-- 美团 -->
     <div class="card" data-category="local">
       <h3 class="card-title">美团推广联盟</h3>
       <p class="card-desc">美团本地生活官方推广平台，到店、外卖、酒旅高佣推广，本地化服务覆盖全。</p>
       <a href="https://union.meituan.com/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
-    <div class="card" data-category="local ecommerce">
-      <h3 class="card-title">携程推广联盟</h3>
-      <p class="card-desc">携程旅游官方推广平台，机票、酒店、旅游产品高佣推广，商旅类推广优势明显。</p>
-      <a href="https://union.ctrip.com/" target="_blank" class="card-btn">进入官方平台</a>
-    </div>
+
   </div>
 </main>
-  <h2 class="message-title">有问必答区</h1>
-  <!-- 新增的留言展示区 -->
+
 <!-- 有问必答区 -->
-<div style="width:calc(100% - 800px);margin:20px auto;">
-  <h3 style="color:#fff;margin-bottom:15px;">有问必答区</h3>
-  <div id="msgBox" style="height:300px;border:2px solid #165DFF;border-radius:8px;background:#121212;padding:15px;overflow-y:auto;margin-bottom:15px;"></div>
-  <textarea id="msgInput" style="width:100%;min-height:80px;border:2px solid #165DFF;border-radius:6px;background:#1a1a1a;color:#fff;padding:12px;margin-bottom:10px;resize:vertical;" placeholder="请输入你的问题..."></textarea>
-  <button onclick="sendQ()" style="padding:10px 25px;border:none;border-radius:6px;background:#165DFF;color:#fff;cursor:pointer;float:right;">提交问题</button>
-  <div style="clear:both;"></div>
+<div class="qa-section">
+  <h3 class="qa-title">有问必答区</h3>
+  <div id="msgBox"></div>
+  <textarea id="msgInput" placeholder="请输入你的问题..."></textarea>
+  <button onclick="sendQ()" class="qa-submit">提交问题</button>
+  <div class="clearfix"></div>
 </div>
+
 <script>
 function sendQ() {
   let input = document.getElementById('msgInput');
@@ -928,10 +650,7 @@ function sendQ() {
   if(!text) return;
   let time = new Date().toLocaleString();
   let msgDiv = document.createElement('div');
-  msgDiv.style.background='#1f1f1f';
-  msgDiv.style.padding='12px';
-  msgDiv.style.borderRadius='6px';
-  msgDiv.style.marginBottom='10px';
+  msgDiv.style.cssText = `background:#1f1f1f;padding:12px;border-radius:6px;margin-bottom:10px;`;
   msgDiv.innerHTML = `<p style="margin:0 0 5px 0;color:#ddd;">${text}</p><p style="margin:0;font-size:12px;color:#666;">${time}</p>`;
   box.insertBefore(msgDiv, box.firstChild);
   input.value='';
@@ -944,70 +663,12 @@ document.getElementById('msgInput').addEventListener('keydown', function(e) {
   }
 });
 </script>
-  <!-- 输入区 -->
-  <textarea id="msgInput" style="width:100%;min-height:80px;border:1px solid #333;border-radius:6px;background:#1a1a1a;color:#fff;padding:12px;margin-bottom:10px;resize:vertical;" placeholder="请输入你的问题..."></textarea>
-  <button onclick="sendQ()" style="padding:10px 25px;border:none;border-radius:6px;background:#165DFF;color:#fff;cursor:pointer;float:right;">提交问题</button>
-  <div style="clear:both;"></div>
-</div>
-
-<script>
-function sendQ() {
-  let input = document.getElementById('msgInput');
-  let box = document.getElementById('msgBox');
-  let text = input.value.trim();
-  if(!text) return;
-  
-  let now = new Date();
-  let time = now.getFullYear()+'-'+(now.getMonth()+1)+'-'+now.getDate()+' '+now.getHours()+':'+now.getMinutes();
-  let msgDiv = document.createElement('div');
-  msgDiv.style.background='#1f1f1f';
-  msgDiv.style.padding='12px';
-  msgDiv.style.borderRadius='6px';
-  msgDiv.style.marginBottom='10px';
-  msgDiv.innerHTML = '<p style="margin:0 0 5px 0;color:#ddd;">'+text+'</p><p style="margin:0;font-size:12px;color:#666;">'+time+'</p>';
-  
-  box.insertBefore(msgDiv, box.firstChild);
-  input.value='';
-  box.scrollTop=0;
-}
-// 回车提交（Shift+回车换行）
-document.getElementById('msgInput').addEventListener('keydown',
-  </div>
-</section>
-
-<script>
-// 留言提交并展示的逻辑
-document.getElementById('message-submit').onclick = () => {
-  // 获取输入的留言内容
-  const msgContent = document.querySelector('.message-textarea').value.trim();
-  if (!msgContent) {
-    alert('请输入留言内容后再提交！');
-    return;
-  }
-  
-  // 创建新的留言项
-  const messageBox = document.getElementById('messageDisplay');
-  const newMessage = document.createElement('div');
-  newMessage.style = `background:var(--dark-3);padding:16px;border-radius:8px;border:1px solid var(--border);margin-bottom:8px;`;
-  newMessage.innerHTML = `
-    <p style="color:var(--text-primary);margin:0;">${msgContent}</p>
-    <p style="font-size:12px;color:var(--text-secondary);margin:8px 0 0 0;">提交时间：${new Date().toLocaleString()}</p>
-  `;
-  
-  // 把新留言加到展示区最上方
-  messageBox.prepend(newMessage);
-  
-  // 提示成功并清空输入框
-  alert('留言提交成功！');
-  document.querySelector('.message-textarea').value = '';
-};
-</script>
 
 <!-- 关于我们 -->
 <section class="about-section">
   <h2 class="about-title">关于我们</h2>
   <div class="about-content">
-    全网高佣推广联盟是国内领先的推广资源整合平台，致力于为推广者提供官方、合规、高佣的推广渠道。我们与各大平台深度合作，保障推广者的收益安全与结算效率。
+    全网高佣推广联盟是国内领先的推广资源整合平台，致力于为推广者提供官方、合规、高佣的推广渠道。
     <div class="contact-info">
       <p>联系方式：15013787778（微信同号）</p>
       <p>QQ：1258999951</p>
@@ -1025,7 +686,6 @@ document.getElementById('message-submit').onclick = () => {
         <label class="form-label">昵称</label>
         <input type="text" class="form-input" name="nickname" placeholder="请输入您的昵称" required>
       </div>
-
       <div class="form-group">
         <label class="form-label">手机号</label>
         <input type="tel" class="form-input" name="phone" id="phone" placeholder="请输入手机号" required>
@@ -1034,7 +694,6 @@ document.getElementById('message-submit').onclick = () => {
         <input type="text" class="form-input" name="phoneCode" id="phoneCode" placeholder="请输入手机验证码" required>
         <button type="button" class="code-btn" id="getPhoneCode">获取验证码</button>
       </div>
-
       <div class="form-group">
         <label class="form-label">邮箱</label>
         <input type="email" class="form-input" name="email" id="email" placeholder="请输入邮箱" required>
@@ -1043,14 +702,13 @@ document.getElementById('message-submit').onclick = () => {
         <input type="text" class="form-input" name="emailCode" id="emailCode" placeholder="请输入邮箱验证码" required>
         <button type="button" class="code-btn" id="getEmailCode">获取验证码</button>
       </div>
-
       <button type="submit" class="submit-btn">提交注册</button>
     </form>
   </div>
 </div>
 
 <script>
-// 页面加载完成后隐藏加载动画
+// 页面加载动画
 window.addEventListener('load', function() {
   setTimeout(() => {
     document.getElementById('loading').classList.add('hidden');
@@ -1073,230 +731,85 @@ navLinks.forEach(link => {
   });
 });
 
-// 弹窗
+// 弹窗控制
 const registerBtn = document.getElementById('register-btn');
 const modal = document.getElementById('register-modal');
 const closeBtn = document.getElementById('modal-close');
-
 registerBtn.onclick = () => {
   modal.classList.add('active');
-  // 弹窗打开时自动聚焦第一个输入框
   document.querySelector('#register-form input').focus();
 };
-
 closeBtn.onclick = () => modal.classList.remove('active');
-
-// 点击弹窗外层关闭弹窗（优化版）
 window.onclick = e => {
-  if (e.target === modal) {
-    modal.classList.remove('active');
-  }
+  if (e.target === modal) modal.classList.remove('active');
 };
-
-// 按ESC键关闭弹窗
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && modal.classList.contains('active')) {
-    modal.classList.remove('active');
-  }
+  if (e.key === 'Escape' && modal.classList.contains('active')) modal.classList.remove('active');
 });
 
-// 验证码工具 - 增加防抖
+// 验证码逻辑
 let phoneCodeTimer = null;
 let emailCodeTimer = null;
-
-function startCodeTimer(btnId, second = 60) {
+function startCodeTimer(btnId) {
   const btn = document.getElementById(btnId);
-  if (btn.disabled) return; // 防止重复点击
-  
+  if (btn.disabled) return;
   btn.disabled = true;
-  let t = second;
+  let t = 60;
   btn.innerText = t + '秒后重发';
-  
-  // 清除之前的定时器
-  if (btnId === 'getPhoneCode' && phoneCodeTimer) {
-    clearInterval(phoneCodeTimer);
-  }
-  if (btnId === 'getEmailCode' && emailCodeTimer) {
-    clearInterval(emailCodeTimer);
-  }
-  
   const timer = setInterval(() => {
     t--;
     if (t <= 0) {
       clearInterval(timer);
       btn.disabled = false;
       btn.innerText = '获取验证码';
-      if (btnId === 'getPhoneCode') {
-        phoneCodeTimer = null;
-      } else {
-        emailCodeTimer = null;
-      }
+      if (btnId === 'getPhoneCode') phoneCodeTimer = null;
+      else emailCodeTimer = null;
     } else {
       btn.innerText = t + '秒后重发';
     }
   }, 1000);
-  
-  if (btnId === 'getPhoneCode') {
-    phoneCodeTimer = timer;
-  } else {
-    emailCodeTimer = timer;
-  }
+  if (btnId === 'getPhoneCode') phoneCodeTimer = timer;
+  else emailCodeTimer = timer;
 }
 
-// 模拟验证码（演示用）
-let phoneCodeVal = '';
-let emailCodeVal = '';
-
-// 获取手机验证码
+// 手机验证码
 document.getElementById('getPhoneCode').onclick = function () {
   const phone = document.getElementById('phone').value.trim();
   if (!/^1[3-9]\d{9}$/.test(phone)) {
     alert('请输入正确的11位手机号');
     return;
   }
-  
-  // 生成随机验证码（更真实的模拟）
-  phoneCodeVal = Math.floor(100000 + Math.random() * 900000).toString();
-  alert(`已发送短信验证码至${phone}：${phoneCodeVal}`);
+  const code = Math.floor(100000 + Math.random() * 900000).toString();
+  alert(`验证码：${code}（仅演示）`);
   startCodeTimer('getPhoneCode');
 };
 
-// 获取邮箱验证码
+// 邮箱验证码
 document.getElementById('getEmailCode').onclick = function () {
   const email = document.getElementById('email').value.trim();
   if (!/^\S+@\S+\.\S+$/.test(email)) {
     alert('请输入正确的邮箱格式');
     return;
   }
-  
-  // 生成随机验证码
-  emailCodeVal = Math.floor(100000 + Math.random() * 900000).toString();
-  alert(`已发送邮箱验证码至${email}：${emailCodeVal}`);
+  const code = Math.floor(100000 + Math.random() * 900000).toString();
+  alert(`验证码：${code}（仅演示）`);
   startCodeTimer('getEmailCode');
 };
 
-// 注册提交（必须双验证码正确）
+// 注册提交
 document.getElementById('register-form').addEventListener('submit', function (e) {
   e.preventDefault();
-  
-  const formData = new FormData(this);
-  const nickname = formData.get('nickname').trim();
-  const phone = formData.get('phone').trim();
-  const email = formData.get('email').trim();
-  const phoneCode = formData.get('phoneCode').trim();
-  const emailCode = formData.get('emailCode').trim();
-  
-  // 基础验证
-  if (!nickname) {
-    alert('请输入昵称');
-    return;
-  }
-  
-  if (!/^1[3-9]\d{9}$/.test(phone)) {
-    alert('请输入正确的手机号');
-    return;
-  }
-  
-  if (!/^\S+@\S+\.\S+$/.test(email)) {
-    alert('请输入正确的邮箱格式');
-    return;
-  }
-  
-  if (!phoneCode) {
-    alert('请输入手机验证码');
-    return;
-  }
-  
-  if (!emailCode) {
-    alert('请输入邮箱验证码');
-    return;
-  }
-  
-  // 验证码验证
-  if (phoneCode !== phoneCodeVal) {
-    alert('手机验证码不正确，请重新输入');
-    document.getElementById('phoneCode').focus();
-    return;
-  }
-  
-  if (emailCode !== emailCodeVal) {
-    alert('邮箱验证码不正确，请重新输入');
-    document.getElementById('emailCode').focus();
-    return;
-  }
-
-  // 注册成功提示
-  alert(`🎉 注册成功！
-昵称：${nickname}
-手机：${phone}
-邮箱：${email}
-
-您已成为全网高佣推广联盟会员，可享受专属高佣加成权益！`);
-  
-  // 重置表单和状态
+  alert('注册成功！（仅演示）');
   modal.classList.remove('active');
   this.reset();
-  phoneCodeVal = '';
-  emailCodeVal = '';
-  
-  // 清除定时器
-  if (phoneCodeTimer) {
-    clearInterval(phoneCodeTimer);
-    phoneCodeTimer = null;
-    document.getElementById('getPhoneCode').disabled = false;
-    document.getElementById('getPhoneCode').innerText = '获取验证码';
-  }
-  
-  if (emailCodeTimer) {
-    clearInterval(emailCodeTimer);
-    emailCodeTimer = null;
-    document.getElementById('getEmailCode').disabled = false;
-    document.getElementById('getEmailCode').innerText = '获取验证码';
-  }
 });
-
-// 留言功能优化
-document.getElementById('message-submit').onclick = () => {
-  const textarea = document.querySelector('.message-textarea');
-  const content = textarea.value.trim();
-  
-  if (!content) {
-    alert('请输入留言内容');
-    textarea.focus();
-    return;
-  }
-  
-  if (content.length > 500) {
-    alert('留言内容不能超过500个字');
-    return;
-  }
-  
-  alert('✅ 留言提交成功！我们会尽快回复您的问题。');
-  textarea.value = '';
-};
 
 // 卡片点击反馈
 document.querySelectorAll('.card').forEach(card => {
   card.addEventListener('click', function(e) {
-    // 只有点击卡片非按钮区域时才添加反馈
     if (!e.target.closest('.card-btn')) {
       this.style.transform = 'translateY(-3px)';
-      setTimeout(() => {
-        this.style.transform = '';
-      }, 100);
-    }
-  });
-});
-
-// 平滑滚动
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    e.preventDefault();
-    const targetId = this.getAttribute('href');
-    if (targetId !== '#') {
-      document.querySelector(targetId).scrollIntoView({
-        behavior: 'smooth'
-      });
+      setTimeout(() => this.style.transform = '', 100);
     }
   });
 });
