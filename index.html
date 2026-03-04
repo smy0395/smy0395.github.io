@@ -37,6 +37,19 @@ body {
   overflow-x: hidden;
 }
 
+/* 星空画布样式 - 优化层级和混合模式 */
+#starry-sky {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  opacity: 0.9;
+  /* 新增：叠加混合模式，让星星和背景融合更自然 */
+  mix-blend-mode: screen;
+}
+
 /* 加载动画 */
 .loading {
   position: fixed;
@@ -112,17 +125,23 @@ body {
   margin-top: 2px;
 }
 
-/* 导航栏 - 移动端自适应优化 */
+/* 导航栏 - 移动端自适应优化 + 星空背景容器 */
 .nav-main {
   background-color: var(--dark-3);
   border-bottom: 1px solid var(--border);
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  position: relative;
+  z-index: 10;
+  /* 新增：轻微的渐变背景，和星空叠加更有层次感 */
+  background: linear-gradient(180deg, rgba(31, 38, 56, 0.95), rgba(20, 25, 39, 0.95));
 }
 .nav-container {
   max-width: 1440px;
   margin: 0 auto;
   padding: 0 0;
+  position: relative;
+  z-index: 11;
 }
 .nav-list {
   display: flex;
@@ -142,6 +161,8 @@ body {
   transition: all 0.2s ease;
   cursor: pointer;
   white-space: nowrap;
+  /* 新增：文字阴影，提升和星空背景的对比度 */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
 }
 .nav-link:hover {
   color: var(--text-primary);
@@ -162,7 +183,7 @@ body {
   border-radius: 3px 3px 0 0;
 }
 
-/* 新闻滚动条 - 移动端优化 */
+/* 新闻滚动条 - 移动端优化 + 可点击链接样式 */
 .news-scroll {
   width: 100%;
   background-color: var(--dark-2);
@@ -173,7 +194,7 @@ body {
 }
 .news-scroll-content {
   display: inline-block;
-  animation: scroll 25s linear infinite;
+  animation: scroll 30s linear infinite;
   padding-left: 100%;
 }
 .news-scroll-item {
@@ -181,6 +202,12 @@ body {
   padding: 0 15px;
   color: var(--text-primary);
   font-size: 13px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+/* 链接悬停效果 */
+.news-scroll-item:hover {
+  color: var(--primary-light);
 }
 .news-scroll-label {
   color: var(--primary);
@@ -190,6 +217,10 @@ body {
 @keyframes scroll {
   0% { transform: translateX(0); }
   100% { transform: translateX(-100%); }
+}
+/* 暂停滚动动画 */
+.news-scroll:hover .news-scroll-content {
+  animation-play-state: paused;
 }
 
 /* 主内容区 - 统一内外边距，和留言栏对齐 */
@@ -206,7 +237,6 @@ body {
   margin-bottom: 8px;
   text-align: center;
 }
-/* 关键修改：描述文字居中对齐 */
 .page-desc {
   font-size: 14px;
   color: var(--text-secondary);
@@ -635,8 +665,11 @@ body {
   </div>
 </header>
 
-<!-- 核心导航栏：含注册会员+会员登录 -->
+<!-- 核心导航栏：含注册会员+会员登录 + 星空背景 -->
 <nav class="nav-main">
+  <!-- 星空画布 -->
+  <canvas id="starry-sky"></canvas>
+  
   <div class="nav-container">
     <ul class="nav-list">
       <li class="nav-item"><a class="nav-link active" data-category="all">首页</a></li>
@@ -646,22 +679,17 @@ body {
       <li class="nav-item"><a class="nav-link" data-category="search">搜索广告</a></li>
       <li class="nav-item"><a class="nav-link" data-category="live">直播带货</a></li>
       <li class="nav-item"><a class="nav-link" data-category="local">本地生活</a></li>
-      <li class="nav-item"><a class="nav-link" data-category="game">游戏推广</a></li>
-      <li class="nav-item"><a class="nav-link" data-category="finance">金融联盟</a></li>
+      <li class="nav-item"><a class="nav-link" data-category="all">全部联盟</a></li>
       <li class="nav-item"><a class="nav-link" id="register-btn">注册会员</a></li>
       <li class="nav-item"><a class="nav-link" id="login-btn">会员登录</a></li>
     </ul>
   </div>
 </nav>
 
-<!-- 新闻滚动条 -->
-<div class="news-scroll">
-  <div class="news-scroll-content">
-    <span class="news-scroll-item"><span class="news-scroll-label">联盟动态</span>：2025年最新高佣推广政策已更新，部分品类佣金比例提升至35%</span>
-    <span class="news-scroll-item"><span class="news-scroll-label">平台公告</span>：抖音精选联盟新增本地生活推广专区，佣金结算周期缩短至T+1</span>
-    <span class="news-scroll-item"><span class="news-scroll-label">行业资讯</span>：淘宝联盟2025年Q1推广数据发布，短视频带货占比突破68%</span>
-    <span class="news-scroll-item"><span class="news-scroll-label">重要通知</span>：注册会员可享专属高佣加成，最高额外提升5%佣金比例</span>
-    <span class="news-scroll-item"><span class="news-scroll-label">活动提醒</span>：京东联盟618推广预热活动已开启，参与即享流量扶持</span>
+<!-- 新闻滚动条 - 新增可点击链接和自动更新功能 -->
+<div class="news-scroll" id="news-scroll">
+  <div class="news-scroll-content" id="news-scroll-content">
+    <!-- 动态生成的滚动内容会插入到这里 -->
   </div>
 </div>
 
@@ -672,113 +700,113 @@ body {
 
   <div class="card-grid">
     <!-- 原有电商/短视频等卡片 -->
-    <div class="card" data-category="shortvideo live local">
+    <div class="card" data-category="shortvideo live local all">
       <h3 class="card-title">抖音精选联盟</h3>
       <p class="card-desc">抖音电商核心推广平台，支持达人带货、智能选品、实时高佣结算，覆盖全品类商品。</p>
       <a href="https://buyin.jinritemai.com/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
-    <div class="card" data-category="shortvideo live">
+    <div class="card" data-category="shortvideo live all">
       <h3 class="card-title">抖音星图商单</h3>
       <p class="card-desc">抖音官方达人广告合作平台，品牌商单精准匹配、佣金透明结算，适合中腰部达人变现。</p>
       <a href="https://star.douyin.com/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
-    <div class="card" data-category="shortvideo live">
+    <div class="card" data-category="shortvideo live all">
       <h3 class="card-title">B站花火平台</h3>
       <p class="card-desc">B站官方商单核心平台，UP主推广、品牌合作、佣金保障，二次元/知识类内容优势显著。</p>
       <a href="https://huahuo.bilibili.com/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
-    <div class="card" data-category="shortvideo article">
+    <div class="card" data-category="shortvideo article all">
       <h3 class="card-title">B站创作中心</h3>
       <p class="card-desc">B站UP主后台核心入口，数据统计、收益结算、商单管理一站式操作。</p>
       <a href="https://member.bilibili.com/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
-    <div class="card" data-category="ecommerce">
+    <div class="card" data-category="ecommerce all">
       <h3 class="card-title">淘宝联盟</h3>
       <p class="card-desc">阿里妈妈核心推广平台，淘宝/天猫全品类商品高佣推广，数据追踪精准、结算周期稳定。</p>
       <a href="https://pub.alimama.com/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
-    <div class="card" data-category="ecommerce">
+    <div class="card" data-category="ecommerce all">
       <h3 class="card-title">京东联盟</h3>
       <p class="card-desc">京东官方推广核心平台，全品类商品高佣分成、月结结算稳定，3C数码类推广优势显著。</p>
       <a href="https://union.jd.com/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
-    <div class="card" data-category="ecommerce">
+    <div class="card" data-category="ecommerce all">
       <h3 class="card-title">拼多多多多进宝</h3>
       <p class="card-desc">拼多多官方推广平台，低价商品高佣推广、实时结算，下沉市场变现首选。</p>
       <a href="https://jinbao.pinduoduo.com/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
-    <div class="card" data-category="article shortvideo">
+    <div class="card" data-category="article shortvideo all">
       <h3 class="card-title">小红书蒲公英</h3>
       <p class="card-desc">小红书达人接单核心平台，品牌精准投放、内容合规审核、高佣分成，头部博主变现首选。</p>
       <a href="https://pgy.xiaohongshu.com/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
-    <div class="card" data-category="shortvideo live ecommerce">
+    <div class="card" data-category="shortvideo live ecommerce all">
       <h3 class="card-title">微信视频号联盟</h3>
       <p class="card-desc">微信视频号官方带货平台，私域流量转化、高佣结算、合规性强，适合公众号/社群联动推广。</p>
       <a href="https://channels.weixin.qq.com/login.html" target="_blank" class="card-btn">进入官方平台</a>
     </div>
-    <div class="card" data-category="ecommerce article">
+    <div class="card" data-category="ecommerce article all">
       <h3 class="card-title">微信公众号广告</h3>
       <p class="card-desc">微信公众号流量主核心平台，广告分成、内容变现、高佣结算，图文内容变现首选。</p>
       <a href="https://mp.weixin.qq.com/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
-    <div class="card" data-category="local">
+    <div class="card" data-category="local all">
       <h3 class="card-title">美团推广联盟</h3>
       <p class="card-desc">美团本地生活官方推广平台，外卖、闪购、酒店全品类推广，无技术服务费，微信生态分享体验佳。</p>
       <a href="https://union.meituan.com/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
-    <div class="card" data-category="local">
+    <div class="card" data-category="local all">
       <h3 class="card-title">携程联盟</h3>
       <p class="card-desc">携程开放平台核心推广渠道，覆盖全旅游品类，支持图文/小程序/公众号带货，订单实时反馈、分成机制丰厚。</p>
       <a href="https://u.ctrip.com/alliance/#/index" target="_blank" class="card-btn">进入官方平台</a>
     </div>
 
     <!-- 所有地图采集平台卡片 -->
-    <div class="card" data-category="local">
+    <div class="card" data-category="local all">
       <h3 class="card-title">高德淘金</h3>
       <p class="card-desc">高德地图官方采集任务平台，完成商家门头、道路标牌、充电桩等采集任务即可获取现金收益。</p>
       <a href="https://gxd.amap.com/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
-    <div class="card" data-category="local">
+    <div class="card" data-category="local all">
       <h3 class="card-title">企鹅汇图（腾讯）</h3>
       <p class="card-desc">腾讯地图官方众包采集平台，采集POI信息、街景数据等任务，按任务量结算收益，提现便捷。</p>
       <a href="https://huitu.map.qq.com/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
-    <div class="card" data-category="local">
+    <div class="card" data-category="local all">
       <h3 class="card-title">百度掘金</h3>
       <p class="card-desc">百度地图官方数据采集平台，参与地图标注、信息核验等任务，多劳多得，收益实时到账。</p>
       <a href="https://juejin.baidu.com/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
-    <div class="card" data-category="local">
+    <div class="card" data-category="local all">
       <h3 class="card-title">美团拍店</h3>
       <p class="card-desc">美团官方商家信息采集平台，餐饮/便利店/酒店等POI核验，审核快、微信提现，单价1-5元/单。</p>
       <div class="card-note">官方入口：https://paidian.meituan.com/</div>
       <a href="https://paidian.meituan.com/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
-    <div class="card" data-category="local">
+    <div class="card" data-category="local all">
       <h3 class="card-title">饿了么拍店</h3>
       <p class="card-desc">饿了么官方商家采集平台，外卖商家信息采集、门头/店内实拍、资质核验，支付宝提现。</p>
       <div class="card-note">备注：此为商家后台，非拍店独立页 https://melody.shop.ele.me/</div>
       <a href="https://melody.shop.ele.me/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
-    <div class="card" data-category="local">
+    <div class="card" data-category="local all">
       <h3 class="card-title">高德拍客</h3>
       <p class="card-desc">高德地图官方实景采集平台，道路/街景/充电桩/停车场任务，量大覆盖广，支付宝提现。</p>
       <a href="https://gxd.amap.com/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
-    <div class="card" data-category="local">
+    <div class="card" data-category="local all">
       <h3 class="card-title">滴滴地图众包</h3>
       <p class="card-desc">滴滴出行官方地图采集平台，道路/POI/交通设施/禁停区核验，适合司机/顺路用户。</p>
       <div class="card-note">备注：滴滴地图开放平台 https://lbs.xiaojukeji.com/</div>
       <a href="https://lbs.xiaojukeji.com/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
-    <div class="card" data-category="local">
+    <div class="card" data-category="local all">
       <h3 class="card-title">曹操出行众包</h3>
       <p class="card-desc">曹操出行官方地图采集平台，道路信息、POI、交通标识采集，适合网约车司机顺路做。</p>
       <div class="card-note">备注：司机招募+众包入口 https://www.caocao.com.cn/recruit</div>
       <a href="https://www.caocao.com.cn/recruit" target="_blank" class="card-btn">进入官方平台</a>
     </div>
-    <div class="card" data-category="local">
+    <div class="card" data-category="local all">
       <h3 class="card-title">天地图众包</h3>
       <p class="card-desc">国家地理信息公共服务平台官方采集，合规性强，道路/POI/地理信息数据众包任务。</p>
       <a href="https://www.tianditu.gov.cn/" target="_blank" class="card-btn">进入官方平台</a>
@@ -890,6 +918,219 @@ body {
 </div>
 
 <script>
+// 星空流动效果核心代码 - 炫酷升级版
+(function() {
+  const canvas = document.getElementById('starry-sky');
+  const ctx = canvas.getContext('2d');
+  
+  // 设置画布尺寸
+  function resizeCanvas() {
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+  }
+  
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+  
+  // 定义颜色渐变表（星空配色）
+  const starColors = [
+    'rgba(255, 255, 255, {alpha})',    // 白色
+    'rgba(150, 200, 255, {alpha})',   // 淡蓝色
+    'rgba(200, 180, 255, {alpha})',   // 淡紫色
+    'rgba(255, 200, 220, {alpha})',   // 淡粉色
+    'rgba(180, 255, 220, {alpha})'    // 淡绿色
+  ];
+
+  // 星星类 - 升级版
+  class Star {
+    constructor() {
+      this.reset();
+      // 闪烁相关属性
+      this.blinkSpeed = Math.random() * 0.02 + 0.005;
+      this.blinkDirection = Math.random() > 0.5 ? 1 : -1;
+      // 轨迹拖尾相关
+      this.trailLength = Math.floor(this.size * 3);
+      this.trailOpacity = 0.3;
+    }
+    
+    reset() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      // 分层级大小
+      this.size = Math.random() * 2 + 0.2;
+      if (Math.random() > 0.9) {
+        this.size = Math.random() * 3 + 2; // 10% 大星星
+      }
+      // 分层级速度
+      this.speed = Math.random() * 0.8 + 0.1;
+      if (this.size > 2) {
+        this.speed = Math.random() * 0.3 + 0.05; // 大星星速度慢
+      }
+      // 随机颜色
+      this.baseAlpha = Math.random() * 0.9 + 0.1;
+      this.alpha = this.baseAlpha;
+      const colorTemplate = starColors[Math.floor(Math.random() * starColors.length)];
+      this.color = colorTemplate.replace('{alpha}', this.alpha);
+    }
+    
+    update() {
+      // 位置更新
+      this.x += this.speed;
+      if (this.x > canvas.width) {
+        this.reset();
+      }
+      
+      // 闪烁效果
+      this.alpha += this.blinkSpeed * this.blinkDirection;
+      if (this.alpha > this.baseAlpha + 0.3) {
+        this.blinkDirection = -1;
+      } else if (this.alpha < this.baseAlpha - 0.3) {
+        this.blinkDirection = 1;
+      }
+      
+      // 更新颜色透明度
+      this.color = this.color.replace(/rgba\((\d+), (\d+), (\d+), [\d.]+?\)/, `rgba($1, $2, $3, ${this.alpha})`);
+    }
+    
+    draw() {
+      // 绘制拖尾
+      if (this.trailLength > 0 && this.speed > 0) {
+        for (let i = 1; i <= this.trailLength; i++) {
+          const trailX = this.x - (this.speed * i * 5);
+          const trailAlpha = this.alpha * (this.trailOpacity / i);
+          const trailColor = this.color.replace(/rgba\((\d+), (\d+), (\d+), [\d.]+?\)/, `rgba($1, $2, $3, ${trailAlpha})`);
+          
+          ctx.beginPath();
+          ctx.arc(trailX, this.y, this.size * (1 - i/this.trailLength/2), 0, Math.PI * 2);
+          ctx.fillStyle = trailColor;
+          ctx.fill();
+        }
+      }
+      
+      // 绘制主体星星
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fillStyle = this.color;
+      ctx.fill();
+      
+      // 给大星星添加高光
+      if (this.size > 2) {
+        ctx.beginPath();
+        ctx.arc(this.x - this.size/3, this.y - this.size/3, this.size/3, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha * 0.8})`;
+        ctx.fill();
+      }
+    }
+  }
+  
+  // 创建星星数组（数量增加，更密集）
+  const stars = [];
+  const starCount = Math.floor(canvas.width * canvas.height / 800); // 从1500改为800，星星更多
+  
+  for (let i = 0; i < starCount; i++) {
+    stars.push(new Star());
+  }
+  
+  // 动画循环（优化帧率）
+  let lastTime = 0;
+  function animate(timestamp) {
+    const deltaTime = timestamp - lastTime;
+    lastTime = timestamp;
+    
+    // 控制帧率约60fps，避免性能浪费
+    if (deltaTime > 16) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      stars.forEach(star => {
+        star.update();
+        star.draw();
+      });
+    }
+    
+    requestAnimationFrame(animate);
+  }
+  
+  requestAnimationFrame(animate);
+})();
+
+// 滚动字幕自动更新和链接功能
+(function() {
+  // 1. 定义滚动新闻数据（可从后端接口获取）
+  const newsData = [
+    {
+      label: "联盟动态",
+      content: "2025年最新高佣推广政策已更新，部分品类佣金比例提升至35%",
+      url: "https://pub.alimama.com/" // 淘宝联盟官方政策页
+    },
+    {
+      label: "平台公告",
+      content: "抖音精选联盟新增本地生活推广专区，佣金结算周期缩短至T+1",
+      url: "https://buyin.jinritemai.com/" // 抖音精选联盟官方页
+    },
+    {
+      label: "行业资讯",
+      content: "淘宝联盟2025年Q1推广数据发布，短视频带货占比突破68%",
+      url: "https://pub.alimama.com/" // 淘宝联盟数据中心
+    },
+    {
+      label: "重要通知",
+      content: "注册会员可享专属高佣加成，最高额外提升5%佣金比例",
+      url: "javascript:void(0)" // 点击打开注册弹窗
+    },
+    {
+      label: "活动提醒",
+      content: "京东联盟618推广预热活动已开启，参与即享流量扶持",
+      url: "https://union.jd.com/" // 京东联盟活动页
+    }
+  ];
+
+  // 2. 生成滚动字幕HTML
+  function renderNewsScroll() {
+    const container = document.getElementById('news-scroll-content');
+    container.innerHTML = '';
+    
+    newsData.forEach(news => {
+      const newsItem = document.createElement('span');
+      newsItem.className = 'news-scroll-item';
+      newsItem.innerHTML = `<span class="news-scroll-label">${news.label}</span>：${news.content}`;
+      
+      // 添加点击事件
+      newsItem.addEventListener('click', function() {
+        // 如果是注册链接，打开注册弹窗
+        if (news.url === 'javascript:void(0)') {
+          document.getElementById('register-modal').classList.add('active');
+        } else {
+          // 其他链接跳转到对应页面（新窗口打开）
+          window.open(news.url, '_blank');
+        }
+      });
+      
+      container.appendChild(newsItem);
+    });
+  }
+
+  // 3. 自动更新功能（模拟定时获取最新数据）
+  function autoUpdateNews() {
+    // 模拟每30分钟更新一次数据
+    setInterval(() => {
+      // 这里可以替换为真实的API请求，获取最新的资讯
+      console.log('正在更新最新联盟资讯...');
+      renderNewsScroll(); // 重新渲染滚动内容
+    }, 30 * 60 * 1000); // 30分钟
+  }
+
+  // 4. 初始化
+  renderNewsScroll();
+  autoUpdateNews();
+
+  // 5. 可选：手动更新测试按钮（可删除）
+  window.updateNewsManually = function() {
+    renderNewsScroll();
+    alert('滚动字幕内容已手动更新！');
+  };
+})();
+
+// 原有功能代码
 function sendQ() {
   let input = document.getElementById('msgInput');
   let box = document.getElementById('msgBox');
