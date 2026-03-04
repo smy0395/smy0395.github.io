@@ -486,6 +486,64 @@ body {
 }
 .clearfix { clear: both; }
 
+/* 友情链接样式 - 新增 */
+.friend-link-section {
+  max-width: 1440px;
+  margin: 0 auto 30px;
+  padding: 20px;
+  width: 100%;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background-color: var(--dark-2);
+  border-radius: 8px;
+}
+.friend-link-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.friend-link-title::before {
+  content: "●";
+  color: var(--primary);
+  font-size: 12px;
+}
+.friend-link-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+.friend-link-card {
+  background-color: var(--dark-3);
+  padding: 15px 20px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  transition: all 0.2s ease;
+}
+.friend-link-card:hover {
+  border-color: var(--primary);
+  background-color: rgba(22, 93, 255, 0.05);
+}
+.friend-link-a {
+  color: var(--primary);
+  font-size: 14px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+}
+.friend-link-a:hover {
+  color: var(--primary-light);
+  text-decoration: underline;
+}
+.friend-link-a i {
+  font-size: 16px;
+}
+
 /* 关于我们 - 移动端优化 */
 .about-section {
   max-width: 1440px;
@@ -536,6 +594,11 @@ body {
   #msgBox { height: 300px; padding: 15px; }
   #msgInput { min-height: 80px; padding: 12px; }
   
+  .friend-link-section { padding: 25px 40px; margin: 0 auto 40px; }
+  .friend-link-title { font-size: 18px; }
+  .friend-link-a { font-size: 16px; }
+  .friend-link-list { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+  
   .about-section { padding: 40px 40px 60px; }
   .about-title { font-size: 24px; }
   .about-content { font-size: 16px; max-width: 800px; }
@@ -546,6 +609,8 @@ body {
   .card-grid { grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); }
 }
     </style>
+    <!-- 引入字体图标（用于友情链接箭头） -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
@@ -665,7 +730,7 @@ body {
       <a href="https://u.ctrip.com/alliance/#/index" target="_blank" class="card-btn">进入官方平台</a>
     </div>
 
-    <!-- 新增：所有地图采集平台卡片 -->
+    <!-- 所有地图采集平台卡片 -->
     <div class="card" data-category="local">
       <h3 class="card-title">高德淘金</h3>
       <p class="card-desc">高德地图官方采集任务平台，完成商家门头、道路标牌、充电桩等采集任务即可获取现金收益。</p>
@@ -728,37 +793,26 @@ body {
   <div class="clearfix"></div>
 </div>
 
-<script>
-function sendQ() {
-  let input = document.getElementById('msgInput');
-  let box = document.getElementById('msgBox');
-  let text = input.value.trim();
-  if(!text) return;
-  let time = new Date().toLocaleString();
-  let msgDiv = document.createElement('div');
-  msgDiv.style.cssText = `background:#1f1f1f;padding:12px;border-radius:6px;margin-bottom:10px;`;
-  msgDiv.innerHTML = `<p style="margin:0 0 5px 0;color:#ddd;">${text}</p><p style="margin:0;font-size:12px;color:#666;">${time}</p>`;
-  box.insertBefore(msgDiv, box.firstChild);
-  input.value='';
-  box.scrollTop=0;
-}
-
-// 新增清除所有留言的函数
-function clearAllMsg() {
-  // 确认是否清除
-  if(confirm('确定要清除所有留言吗？')) {
-    document.getElementById('msgBox').innerHTML = '';
-    document.getElementById('msgInput').value = '';
-  }
-}
-
-document.getElementById('msgInput').addEventListener('keydown', function(e) {
-  if(e.key==='Enter' && !e.shiftKey) {
-    e.preventDefault();
-    sendQ();
-  }
-});
-</script>
+<!-- 友情链接区域 - 新增：AI工具集 + GitHub 官方仪表板 -->
+<section class="friend-link-section">
+  <h3 class="friend-link-title">友情链接</h3>
+  <div class="friend-link-list">
+    <!-- AI工具集 -->
+    <div class="friend-link-card">
+      <a href="https://www.ai-321.cn/#term-1303" target="_blank" class="friend-link-a">
+        <i class="fas fa-link"></i>
+        AI工具集 - 全网优质AI工具聚合平台
+      </a>
+    </div>
+    <!-- GitHub 官方仪表板 -->
+    <div class="friend-link-card">
+      <a href="https://github.com/dashboard" target="_blank" class="friend-link-a">
+        <i class="fab fa-github"></i>
+        GitHub 官方仪表板 - 开发者代码管理核心入口
+      </a>
+    </div>
+  </div>
+</section>
 
 <!-- 关于我们 -->
 <section class="about-section">
@@ -833,6 +887,36 @@ document.getElementById('msgInput').addEventListener('keydown', function(e) {
 </div>
 
 <script>
+function sendQ() {
+  let input = document.getElementById('msgInput');
+  let box = document.getElementById('msgBox');
+  let text = input.value.trim();
+  if(!text) return;
+  let time = new Date().toLocaleString();
+  let msgDiv = document.createElement('div');
+  msgDiv.style.cssText = `background:#1f1f1f;padding:12px;border-radius:6px;margin-bottom:10px;`;
+  msgDiv.innerHTML = `<p style="margin:0 0 5px 0;color:#ddd;">${text}</p><p style="margin:0;font-size:12px;color:#666;">${time}</p>`;
+  box.insertBefore(msgDiv, box.firstChild);
+  input.value='';
+  box.scrollTop=0;
+}
+
+// 新增清除所有留言的函数
+function clearAllMsg() {
+  // 确认是否清除
+  if(confirm('确定要清除所有留言吗？')) {
+    document.getElementById('msgBox').innerHTML = '';
+    document.getElementById('msgInput').value = '';
+  }
+}
+
+document.getElementById('msgInput').addEventListener('keydown', function(e) {
+  if(e.key==='Enter' && !e.shiftKey) {
+    e.preventDefault();
+    sendQ();
+  }
+});
+
 // 页面加载动画
 window.addEventListener('load', function() {
   setTimeout(() => {
