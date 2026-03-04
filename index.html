@@ -272,6 +272,14 @@ body {
   line-height: 1.5;
   margin-bottom: 18px;
 }
+.card-note {
+  font-size: 11px;
+  color: #94A3B8;
+  margin-bottom: 12px;
+  padding: 4px 8px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 4px;
+}
 .card-btn {
   display: inline-block;
   padding: 10px 20px;
@@ -595,7 +603,7 @@ body {
   <p class="page-desc">汇聚主流高佣推广联盟，所有平台均为官方授权，保障推广收益安全合规</p>
 
   <div class="card-grid">
-    <!-- 抖音 -->
+    <!-- 原有电商/短视频等卡片 -->
     <div class="card" data-category="shortvideo live local">
       <h3 class="card-title">抖音精选联盟</h3>
       <p class="card-desc">抖音电商核心推广平台，支持达人带货、智能选品、实时高佣结算，覆盖全品类商品。</p>
@@ -606,8 +614,6 @@ body {
       <p class="card-desc">抖音官方达人广告合作平台，品牌商单精准匹配、佣金透明结算，适合中腰部达人变现。</p>
       <a href="https://star.douyin.com/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
-
-    <!-- B站 -->
     <div class="card" data-category="shortvideo live">
       <h3 class="card-title">B站花火平台</h3>
       <p class="card-desc">B站官方商单核心平台，UP主推广、品牌合作、佣金保障，二次元/知识类内容优势显著。</p>
@@ -618,8 +624,6 @@ body {
       <p class="card-desc">B站UP主后台核心入口，数据统计、收益结算、商单管理一站式操作。</p>
       <a href="https://member.bilibili.com/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
-
-    <!-- 电商联盟 -->
     <div class="card" data-category="ecommerce">
       <h3 class="card-title">淘宝联盟</h3>
       <p class="card-desc">阿里妈妈核心推广平台，淘宝/天猫全品类商品高佣推广，数据追踪精准、结算周期稳定。</p>
@@ -635,15 +639,11 @@ body {
       <p class="card-desc">拼多多官方推广平台，低价商品高佣推广、实时结算，下沉市场变现首选。</p>
       <a href="https://jinbao.pinduoduo.com/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
-
-    <!-- 小红书 -->
     <div class="card" data-category="article shortvideo">
       <h3 class="card-title">小红书蒲公英</h3>
       <p class="card-desc">小红书达人接单核心平台，品牌精准投放、内容合规审核、高佣分成，头部博主变现首选。</p>
       <a href="https://pgy.xiaohongshu.com/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
-
-    <!-- 微信系 -->
     <div class="card" data-category="shortvideo live ecommerce">
       <h3 class="card-title">微信视频号联盟</h3>
       <p class="card-desc">微信视频号官方带货平台，私域流量转化、高佣结算、合规性强，适合公众号/社群联动推广。</p>
@@ -654,8 +654,6 @@ body {
       <p class="card-desc">微信公众号流量主核心平台，广告分成、内容变现、高佣结算，图文内容变现首选。</p>
       <a href="https://mp.weixin.qq.com/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
-
-    <!-- 本地生活+旅游 -->
     <div class="card" data-category="local">
       <h3 class="card-title">美团推广联盟</h3>
       <p class="card-desc">美团本地生活官方推广平台，外卖、闪购、酒店全品类推广，无技术服务费，微信生态分享体验佳。</p>
@@ -667,14 +665,14 @@ body {
       <a href="https://u.ctrip.com/alliance/#/index" target="_blank" class="card-btn">进入官方平台</a>
     </div>
 
-    <!-- 新增：地图采集任务平台 -->
+    <!-- 新增：所有地图采集平台卡片 -->
     <div class="card" data-category="local">
       <h3 class="card-title">高德淘金</h3>
       <p class="card-desc">高德地图官方采集任务平台，完成商家门头、道路标牌、充电桩等采集任务即可获取现金收益。</p>
       <a href="https://gxd.amap.com/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
     <div class="card" data-category="local">
-      <h3 class="card-title">企鹅汇图</h3>
+      <h3 class="card-title">企鹅汇图（腾讯）</h3>
       <p class="card-desc">腾讯地图官方众包采集平台，采集POI信息、街景数据等任务，按任务量结算收益，提现便捷。</p>
       <a href="https://huitu.map.qq.com/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
@@ -682,6 +680,40 @@ body {
       <h3 class="card-title">百度掘金</h3>
       <p class="card-desc">百度地图官方数据采集平台，参与地图标注、信息核验等任务，多劳多得，收益实时到账。</p>
       <a href="https://juejin.baidu.com/" target="_blank" class="card-btn">进入官方平台</a>
+    </div>
+    <div class="card" data-category="local">
+      <h3 class="card-title">美团拍店</h3>
+      <p class="card-desc">美团官方商家信息采集平台，餐饮/便利店/酒店等POI核验，审核快、微信提现，单价1-5元/单。</p>
+      <div class="card-note">官方入口：https://paidian.meituan.com/</div>
+      <a href="https://paidian.meituan.com/" target="_blank" class="card-btn">进入官方平台</a>
+    </div>
+    <div class="card" data-category="local">
+      <h3 class="card-title">饿了么拍店</h3>
+      <p class="card-desc">饿了么官方商家采集平台，外卖商家信息采集、门头/店内实拍、资质核验，支付宝提现。</p>
+      <div class="card-note">备注：此为商家后台，非拍店独立页 https://melody.shop.ele.me/</div>
+      <a href="https://melody.shop.ele.me/" target="_blank" class="card-btn">进入官方平台</a>
+    </div>
+    <div class="card" data-category="local">
+      <h3 class="card-title">高德拍客</h3>
+      <p class="card-desc">高德地图官方实景采集平台，道路/街景/充电桩/停车场任务，量大覆盖广，支付宝提现。</p>
+      <a href="https://gxd.amap.com/" target="_blank" class="card-btn">进入官方平台</a>
+    </div>
+    <div class="card" data-category="local">
+      <h3 class="card-title">滴滴地图众包</h3>
+      <p class="card-desc">滴滴出行官方地图采集平台，道路/POI/交通设施/禁停区核验，适合司机/顺路用户。</p>
+      <div class="card-note">备注：滴滴地图开放平台 https://lbs.xiaojukeji.com/</div>
+      <a href="https://lbs.xiaojukeji.com/" target="_blank" class="card-btn">进入官方平台</a>
+    </div>
+    <div class="card" data-category="local">
+      <h3 class="card-title">曹操出行众包</h3>
+      <p class="card-desc">曹操出行官方地图采集平台，道路信息、POI、交通标识采集，适合网约车司机顺路做。</p>
+      <div class="card-note">备注：司机招募+众包入口 https://www.caocao.com.cn/recruit</div>
+      <a href="https://www.caocao.com.cn/recruit" target="_blank" class="card-btn">进入官方平台</a>
+    </div>
+    <div class="card" data-category="local">
+      <h3 class="card-title">天地图众包</h3>
+      <p class="card-desc">国家地理信息公共服务平台官方采集，合规性强，道路/POI/地理信息数据众包任务。</p>
+      <a href="https://www.tianditu.gov.cn/" target="_blank" class="card-btn">进入官方平台</a>
     </div>
   </div>
 </main>
