@@ -282,10 +282,11 @@ body::before {
   width: 100%;
 }
 
-/* 平台卡片 - 移动端自适应优化 */
+/* 平台卡片 - 移动端自适应优化（核心修改：移动端默认双列） */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  /* 修改：移动端默认双列布局，最小列宽调整为140px */
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   gap: 16px;
   width: 100%;
 }
@@ -583,8 +584,9 @@ body::before {
   font-size: 12px;
 }
 .friend-link-list {
+  /* 友情链接也同步改为移动端双列 */
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   gap: 12px;
 }
 .friend-link-card {
